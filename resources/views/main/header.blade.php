@@ -4,7 +4,7 @@
         <div class="logo-header" data-background-color="dark">
             <a href="" class="logo">
                 <img
-                    src="/public/assets/img/kaiadmin/logo_light.svg"
+                    src="/assets/img/kaiadmin/logo_light.svg"
                     alt="navbar brand"
                     class="navbar-brand"
                     height="20"
@@ -56,7 +56,7 @@
                     >
                         <div class="avatar-sm">
                             <img
-                                src="/public/assets/img/profile.jpg"
+                                src="/assets/img/profile.jpg"
                                 alt="..."
                                 class="avatar-img rounded-circle"
                             />
@@ -72,7 +72,7 @@
                                 <div class="user-box">
                                     <div class="avatar-lg">
                                         <img
-                                            src="/public/assets/img/profile.jpg"
+                                            src="/assets/img/profile.jpg"
                                             alt="image profile"
                                             class="avatar-img rounded"
                                         />
