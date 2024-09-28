@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Route; @endphp
 <div class="main-header">
     <div class="main-header-logo">
         <!-- Logo Header -->
@@ -30,20 +31,68 @@
     >
         <div class="container-fluid">
             <nav
-                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex page-header-custom"
             >
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button type="submit" class="btn btn-search pe-1">
-                            <i class="fa fa-search search-icon"></i>
-                        </button>
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="Search ..."
-                        class="form-control"
-                    />
-                </div>
+                <h3 class="fw-bold mb-3">
+                    @switch(Route::currentRouteName())
+                        @case('document.index')
+                            Danh Sách
+                            @break
+                        @case('document.create')
+                            Thêm mới
+                            @break
+                        @case('category.index')
+                            Danh Sách
+                            @break
+
+                    @endswitch
+
+                </h3>
+                <ul class="breadcrumbs mb-3">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="icon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="icon-arrow-right"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            @switch(Route::currentRouteName())
+                                @case('document.index')
+                                    Quản lý tài liệu
+                                    @break
+                                @case('document.create')
+                                    Quản lý tài liệu
+                                    @break
+                                @case('category.index')
+                                    Quản lý thư mục
+                                    @break
+
+                            @endswitch
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="icon-arrow-right"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            @switch(Route::currentRouteName())
+                                @case('document.index')
+                                    Danh Sách tài liệu
+                                    @break
+                                @case('document.create')
+                                    Thêm mới tài liệu
+                                    @break
+                                @case('category.index')
+                                    Danh sách thư mục
+                                    @break
+
+                            @endswitch
+                        </a>
+                    </li>
+                </ul>
             </nav>
 
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
@@ -102,3 +151,9 @@
     </nav>
     <!-- End Navbar -->
 </div>
+
+<style>
+    .page-header-custom {
+        margin-top: 15px;
+    }
+</style>

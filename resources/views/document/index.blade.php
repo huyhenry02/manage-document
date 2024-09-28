@@ -1,29 +1,19 @@
 @extends('main.index')
 @section('content')
-    <div class="page-header d-flex">
-        <h3 class="fw-bold mb-3">Danh Sách tài liệu</h3>
-        <ul class="breadcrumbs mb-3">
-            <li class="nav-home">
-                <a href="#">
-                    <i class="icon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="icon-arrow-right"></i>
-            </li>
-            <li class="nav-item">
-                <a href="#">Quản lý tài liệu</a>
-            </li>
-            <li class="separator">
-                <i class="icon-arrow-right"></i>
-            </li>
-            <li class="nav-item">
-                <a href="#">Danh sách</a>
-            </li>
-        </ul>
+    <div class="page-header d-flex align-items-center">
+        <div class="input-search-document position-relative">
+            <label>
+                <input
+                    type="text"
+                    placeholder="Tìm kiếm theo tiêu đề hoặc thư mục tài liệu ..."
+                    class="form-control search-input"
+                />
+            </label>
+        </div>
+
         <a
             class="btn btn-primary btn-round ms-auto"
-            href=""
+            href="{{ route('document.create') }}"
         >
             <i class="fa fa-plus"></i>
             Thêm mới
@@ -2470,3 +2460,17 @@
         </div>
     </div>
 @endsection
+<style>
+    .input-search-document {
+        position: relative;
+    }
+
+    .search-input {
+        padding-left: 35px; !important;
+    }
+
+    .input-search-document input {
+        width: 500px;
+    }
+
+</style>

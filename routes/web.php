@@ -7,7 +7,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\CategoryController;
 
 Route::get('/', static function () {
-    return view('document.index');
+    return view('index');
 });
 
 Route::group([

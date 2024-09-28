@@ -88,7 +88,7 @@
                         <div class="collapse show" id="dashboard">
                             <ul class="nav nav-collapse show">
                                 <li>
-                                    <a href="">
+                                    <a href="{{route('document.index')}}">
                                         <span class="sub-item">Danh sách tài liệu</span>
                                     </a>
                                 </li>
@@ -98,7 +98,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="{{route('category.index')}}">
                                         <span class="sub-item">Thư mục tài liệu</span>
                                     </a>
                                 </li>
@@ -119,7 +119,7 @@
                         <div class="collapse show" id="maps">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="">
+                                    <a href="{{route('user.index')}}">
                                         <span class="sub-item">Danh sách người dùng</span>
                                     </a>
                                 </li>
