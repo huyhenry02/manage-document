@@ -5,15 +5,23 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div class="action-buttons">
-                        <a href="#" class="btn btn-outline-primary me-2"><i class="fa fa-plus"></i> Thêm thư mục</a>
-                        <a href="#" class="btn btn-outline-secondary me-2"><i class="fas fa-pen"></i> Sửa thư mục</a>
-                        <a href="#" class="btn btn-outline-danger me-2"><i class="fas fa-trash-alt"></i> Xóa thư mục</a>
-                        <a href="#" class="btn btn-outline-info me-2"><i class="fas fa-th-large"></i> Di chuyển bài viết</a>
-                        <a href="#" class="btn btn-outline-success me-2"><i class="fas fa-times"></i> Bỏ bài viết khỏi thư mục</a>
+                        <button class="btn btn-outline-primary me-2" data-toggle="modal"
+                                data-target="#createParentCategory"><i class="fa fa-plus"></i> Thêm thư mục
+                        </button>
+                        <button class="btn btn-outline-secondary me-2"><i class="fas fa-pen"></i> Sửa thư mục
+                        </button>
+                        <button class="btn btn-outline-danger me-2"><i class="fas fa-trash-alt"></i> Xóa thư mục
+                        </button>
+                        <button class="btn btn-outline-info me-2"><i class="fas fa-th-large"></i> Di chuyển bài viết
+                        </button>
+                        <button class="btn btn-outline-success me-2"><i class="fas fa-times"></i> Bỏ bài viết khỏi thư
+                            mục
+                        </button>
                     </div>
                     <div class="input-search-category">
                         <label>
-                            <input type="text" placeholder="Tìm kiếm theo tiêu đề hoặc thư mục tài liệu  ..." class="form-control" />
+                            <input type="text" placeholder="Tìm kiếm theo tiêu đề hoặc thư mục tài liệu  ..."
+                                   class="form-control"/>
                         </label>
                     </div>
                 </div>
@@ -21,32 +29,39 @@
                 <div class="card-body d-flex">
                     <div class="list-categories">
                         <ul class="folder-list">
-                            <li>
-                <span class="folder" onclick="toggleSubfolder(this)">
-                    <i class="fas fa-folder me-2"></i>Folder 1
-                </span>
-                                <ul class="subfolder">
-                                    <li>
-                        <span class="folder" onclick="toggleSubfolder(this)">
-                            <i class="fas fa-folder me-2"></i>Subfolder 1.1
-                        </span>
-                                        <ul class="subfolder">
-                                            <li><i class="fas fa-folder me-2"></i>Subfolder 1.1.1</li>
-                                            <li><i class="fas fa-folder me-2"></i>Subfolder 1.1.2</li>
-                                        </ul>
-                                    </li>
-                                    <li><i class="fas fa-folder me-2"></i>Subfolder 1.2</li>
-                                </ul>
-                            </li>
-                            <li>
-                                            <span class="folder" onclick="toggleSubfolder(this)">
-                                                            <i class="fas fa-folder me-2"></i>Folder 2
+                            @foreach($data as $folder)
+                                <li>
+                                    <span class="folder" onclick="toggleSubfolder(this)"
+                                          oncontextmenu="openCreateSubfolderModal(event, '{{$folder['name']}}')">
+                                        <i class="fas fa-folder me-2"></i>{{ $folder['name']  ?? '' }}
+                                    </span>
+                                </li>
+                                @if($folder['subfolder'] !== null)
+                                    <ul class="subfolder">
+                                        @foreach($folder['subfolder'] as $subfolder)
+                                            <li>
+                                                <span class="folder" onclick="toggleSubfolder(this)"
+                                                      oncontextmenu="openCreateSubfolderModal(event, '{{$subfolder['name']}}')">
+                                                    <i class="fas fa-folder me-2"></i>{{ $subfolder['name']  ?? '' }}
                                                 </span>
-                                <ul class="subfolder">
-                                    <li><i class="fas fa-folder me-2"></i>Subfolder 2.1</li>
-                                    <li><i class="fas fa-folder me-2"></i>Subfolder 2.2</li>
-                                </ul>
-                            </li>
+                                                @if(!empty($subfolder['subfolder']))
+                                                    <ul class="subfolder">
+                                                        @foreach($subfolder['subfolder'] as $subfolder2)
+                                                            <li>
+                                                            <span class="folder" onclick="toggleSubfolder(this)"
+                                                                  oncontextmenu="openCreateSubfolderModal(event, '{{$subfolder2['name']}}')">
+                                                                <i class="fas fa-folder me-2"></i>{{ $subfolder2['name']  ?? '' }}
+                                                            </span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
+                                        @endforeach
+
+                                    </ul>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                     <div class="list-document-of-category">
@@ -91,7 +106,76 @@
 
         </div>
     </div>
+    <div class="modal fade" id="createParentCategory" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Tạo mới thư mục</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="folderName">Tên thư mục</label>
+                        <input type="text" class="form-control" id="folderName" placeholder="Nhập tên thư mục">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createChildrenCategory" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tạo mới thư mục con</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Thư mục cha:</label>
+                        <span id="parentFolderName" class="font-weight-bold">Folder 1</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="folderName">Tên thư mục mới</label>
+                        <input type="text" class="form-control" id="folderName" placeholder="Nhập tên thư mục">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+<script>
+    function openCreateSubfolderModal(event, folderName) {
+        event.preventDefault();
+        document.getElementById('parentFolderName').innerText = folderName;
+        $('#createChildrenCategory').modal('show');
+    }
+
+    function toggleSubfolder(element) {
+        var subfolder = element.nextElementSibling;
+        if (subfolder.style.display === "block") {
+            subfolder.style.display = "none";
+            element.querySelector("i").classList.replace("fa-folder-open", "fa-folder");
+        } else {
+            subfolder.style.display = "block";
+            element.querySelector("i").classList.replace("fa-folder", "fa-folder-open");
+        }
+    }
+</script>
 <style>
     .card-body {
         display: flex;
@@ -121,7 +205,8 @@
         font-weight: 500;
         cursor: pointer;
         display: block;
-        padding: 6px 0;
+        position: relative;
+        padding: 6px 10px;
         color: #007bff;
     }
 
@@ -132,6 +217,7 @@
     .folder:hover {
         color: #0056b3;
         text-decoration: underline;
+        background-color: #e9ecef;
     }
 
     .subfolder {
@@ -224,10 +310,10 @@
         text-decoration: underline;
     }
 
-
     .file-link .fas {
         margin-right: 8px;
     }
+
     .card-header {
         padding: 10px;
     }
@@ -248,21 +334,27 @@
         border: 1px solid #ced4da;
     }
 
-
     .card-header a {
         padding: 6px 10px;
     }
 
-</style>
-<script>
-    function toggleSubfolder(element) {
-        var subfolder = element.nextElementSibling;
-        if (subfolder.style.display === "block") {
-            subfolder.style.display = "none";
-            element.querySelector("i").classList.replace("fa-folder-open", "fa-folder");
-        } else {
-            subfolder.style.display = "block";
-            element.querySelector("i").classList.replace("fa-folder", "fa-folder-open");
-        }
+    .form-group label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
     }
-</script>
+
+    .form-control {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ced4da;
+        box-shadow: none;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+</style>

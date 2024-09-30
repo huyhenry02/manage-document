@@ -31,15 +31,22 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
+            $table->string('code', 255);
             $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->bigInteger('created_by_id')->unsigned();
             $table->bigInteger('updated_by_id')->unsigned()->nullable();
             $table->timestamps();
         });
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('document_actions', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('document_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->enum('action', ['approve', 'reject']);
+            $table->timestamps();
+        });
+        Schema::create('attachment_files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('model_id')->unsigned();
-            $table->string('model_type');
+            $table->bigInteger('document_id')->unsigned();
             $table->string('file_path');
             $table->string('file_name');
             $table->bigInteger('file_size')->unsigned();
@@ -58,8 +65,13 @@ return new class extends Migration
             $table->foreign('created_by_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('set null');
         });
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('attachment_files', function (Blueprint $table) {
             $table->foreign('uploaded_by_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
+        });
+        Schema::table('document_actions', function (Blueprint $table) {
+            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -69,9 +81,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('documents');
+        Schema::dropIfExists('document_actions');
         Schema::dropIfExists('categories');
-        Schema::dropIfExists('files');
-        Schema::table('documents', function (Blueprint $table) {
+        Schema::dropIfExists('attachment_files');
+        Schema::table('attachment_files', function (Blueprint $table) {
             $table->dropForeign(['category_id']);
             $table->dropForeign(['created_by_id']);
             $table->dropForeign(['update_status_by_id']);
@@ -82,8 +95,13 @@ return new class extends Migration
             $table->dropForeign(['created_by_id']);
             $table->dropForeign(['updated_by_id']);
         });
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('attachment_files', function (Blueprint $table) {
             $table->dropForeign(['uploaded_by_id']);
+            $table->dropForeign(['document_id']);
+        });
+        Schema::table('document_actions', function (Blueprint $table) {
+            $table->dropForeign(['document_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 };

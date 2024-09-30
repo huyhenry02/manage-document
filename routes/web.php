@@ -39,8 +39,9 @@ Route::group([
     'prefix' => 'category'
 ], function () {
     Route::get('/', [CategoryController::class, 'show_index'])->name('category.index');
-    Route::get('/create', [CategoryController::class, 'show_create'])->name('category.create');
     Route::get('/update', [CategoryController::class, 'show_update'])->name('category.update');
     Route::get('/detail', [CategoryController::class, 'show_detail'])->name('category.detail');
+
+    Route::post('/', [CategoryController::class, 'store'])->name('category.store');
 });
 
