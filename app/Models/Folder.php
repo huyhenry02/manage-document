@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class Folder extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
+    protected $table = 'folders';
     protected $fillable = [
         'name',
         'code',

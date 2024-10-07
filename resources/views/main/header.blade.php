@@ -41,7 +41,7 @@
                         @case('document.create')
                             Thêm mới
                             @break
-                        @case('category.index')
+                        @case('folder.index')
                             Danh Sách
                             @break
 
@@ -66,7 +66,7 @@
                                 @case('document.create')
                                     Quản lý tài liệu
                                     @break
-                                @case('category.index')
+                                @case('folder.index')
                                     Quản lý thư mục
                                     @break
 
@@ -85,7 +85,7 @@
                                 @case('document.create')
                                     Thêm mới tài liệu
                                     @break
-                                @case('category.index')
+                                @case('folder.index')
                                     Danh sách thư mục
                                     @break
 

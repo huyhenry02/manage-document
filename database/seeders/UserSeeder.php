@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         foreach ($data as $item) {
             User::create([
                 'name' => $item->name,
-                'role' => $item->role,
+                'role_type' => $item->role_type,
                 'email' => $item->email,
                 'password' => bcrypt($item->password),
                 'email_verified_at' => now(),

@@ -98,7 +98,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{route('category.index')}}">
+                                    <a href="{{route('folder.index')}}">
                                         <span class="sub-item">Thư mục tài liệu</span>
                                     </a>
                                 </li>

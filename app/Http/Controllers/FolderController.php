@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Models\Category;
+use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
@@ -11,28 +11,28 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 
-class CategoryController extends Controller
+class FolderController extends Controller
 {
     public function show_index(): View|Factory|Application
     {
-        $categories = Category::all()->toArray();
-        $data = $this->buildCategoryTree($categories);
-        return view('category.index', ['data' => $data]);
+        $categories = Folder::all()->toArray();
+        $data = $this->buildFolderTree($categories);
+        return view('folder.index', ['data' => $data]);
     }
 
-    private function buildCategoryTree(array $categories, $parentId = null): array
+    private function buildFolderTree(array $categories, $parentId = null): array
     {
         $branch = [];
 
-        foreach ($categories as $category) {
-            if ($category['parent_id'] === $parentId) {
-                $children = $this->buildCategoryTree($categories, $category['id']);
+        foreach ($categories as $folder) {
+            if ($folder['parent_id'] === $parentId) {
+                $children = $this->buildFolderTree($categories, $folder['id']);
                 if ($children) {
-                    $category['subfolder'] = $children;
+                    $folder['subfolder'] = $children;
                 } else {
-                    $category['subfolder'] = null;
+                    $folder['subfolder'] = null;
                 }
-                $branch[] = $category;
+                $branch[] = $folder;
             }
         }
 
@@ -41,13 +41,13 @@ class CategoryController extends Controller
 
     public function show_detail(): View|Factory|Application
     {
-        return view('category.detail');
+        return view('folder.detail');
 
     }
 
     public function show_update(): View|Factory|Application
     {
-        return view('category.update');
+        return view('folder.update');
 
     }
 
@@ -61,11 +61,11 @@ class CategoryController extends Controller
                 $input['parent_id'] = null;
             }
             $input['create_user_id'] = auth()->id();
-            $category = new Category();
-            $category->fill($input);
-            $category->save();
+            $folder = new Folder();
+            $folder->fill($input);
+            $folder->save();
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('folder.index');
         }catch (Exception $e){
             DB::rollBack();
             return redirect()->back();

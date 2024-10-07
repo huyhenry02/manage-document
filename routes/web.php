@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FolderController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\CategoryController;
 
@@ -36,12 +37,12 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'category'
+    'prefix' => 'folder'
 ], function () {
-    Route::get('/', [CategoryController::class, 'show_index'])->name('category.index');
-    Route::get('/update', [CategoryController::class, 'show_update'])->name('category.update');
-    Route::get('/detail', [CategoryController::class, 'show_detail'])->name('category.detail');
+    Route::get('/', [FolderController::class, 'show_index'])->name('folder.index');
+    Route::get('/update', [FolderController::class, 'show_update'])->name('folder.update');
+    Route::get('/detail', [FolderController::class, 'show_detail'])->name('folder.detail');
 
-    Route::post('/', [CategoryController::class, 'store'])->name('category.store');
+    Route::post('/', [FolderController::class, 'store'])->name('folder.store');
 });
 
