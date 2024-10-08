@@ -12,22 +12,26 @@ Route::get('/', static function () {
 
 Route::group([
     'prefix' => 'auth'
-], function () {
+], static function () {
     Route::get('/login', [AuthController::class, 'show_login'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'postLogin'])->name('auth.post_login');
+    Route::get('/logout', [AuthController::class, 'postLogout'])->name('auth.logout');
 });
 
 Route::group([
     'prefix' => 'document'
-], function () {
+], static function () {
     Route::get('/', [DocumentController::class, 'show_index'])->name('document.index');
     Route::get('/create', [DocumentController::class, 'show_create'])->name('document.create');
     Route::get('/update', [DocumentController::class, 'show_update'])->name('document.update');
     Route::get('/detail', [DocumentController::class, 'show_detail'])->name('document.detail');
+
+    Route::post('/create', [DocumentController::class, 'createDocument'])->name('document.store');
 });
 
 Route::group([
     'prefix' => 'user'
-], function () {
+], static function () {
     Route::get('/', [UserController::class, 'show_index'])->name('user.index');
     Route::get('/create', [UserController::class, 'show_create'])->name('user.create');
     Route::get('/update', [UserController::class, 'show_update'])->name('user.update');
@@ -36,7 +40,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'folder'
-], function () {
+], static function () {
     Route::get('/', [FolderController::class, 'show_index'])->name('folder.index');
     Route::get('/update', [FolderController::class, 'show_update'])->name('folder.update');
     Route::get('/detail', [FolderController::class, 'show_detail'])->name('folder.detail');

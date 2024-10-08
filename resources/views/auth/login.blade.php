@@ -23,7 +23,6 @@
             border: none;
             border-radius: 0.5rem;
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-            text-align: center;
         }
 
         .card-body {
@@ -76,7 +75,7 @@
                 <div class="card card-lg mb-5">
                     <div class="card-body">
                         <!-- Form -->
-                        <form class="js-validate" action="" method="post">
+                        <form class="js-validate" action="{{ route('auth.post_login') }}" method="post">
                             @csrf
                             <div class="js-form-message form-group">
                                 <label class="input-label" for="signinSrEmail">Email của bạn</label>
