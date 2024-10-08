@@ -19,38 +19,19 @@ class Document extends Model
         'start_time',
         'end_time',
         'is_featured',
+        'is_public',
         'status',
-        'approved_at',
-        'reject_reason',
         'note',
-        'category_id',
         'created_by_id',
-        'update_status_by_id',
         'updated_by_id',
     ];
-
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by_id');
     }
 
-    public function updateStatusBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'update_status_by_id');
-    }
-
     public function updatedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'updated_by_id');
-    }
-
-    public function attachmentFiles(): HasMany
-    {
-        return $this->hasMany(AttachmentFile::class, 'document_id');
     }
 }

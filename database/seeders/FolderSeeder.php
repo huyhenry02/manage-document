@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Folder;
-use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class FolderSeeder extends Seeder
