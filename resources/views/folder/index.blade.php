@@ -35,32 +35,32 @@
                                           oncontextmenu="openCreateSubfolderModal(event, '{{$folder['name']}}')">
                                         <i class="fas fa-folder me-2"></i>{{ $folder['name']  ?? '' }}
                                     </span>
-                                </li>
-                                @if($folder['subfolder'] !== null)
-                                    <ul class="subfolder">
-                                        @foreach($folder['subfolder'] as $subfolder)
-                                            <li>
+                                    @if($folder['subfolder'] !== null)
+                                        <ul class="subfolder">
+                                            @foreach($folder['subfolder'] as $subfolder)
+                                                <li>
                                                 <span class="folder" onclick="toggleSubfolder(this)"
                                                       oncontextmenu="openCreateSubfolderModal(event, '{{$subfolder['name']}}')">
                                                     <i class="fas fa-folder me-2"></i>{{ $subfolder['name']  ?? '' }}
                                                 </span>
-                                                @if(!empty($subfolder['subfolder']))
-                                                    <ul class="subfolder">
-                                                        @foreach($subfolder['subfolder'] as $subfolder2)
-                                                            <li>
+                                                    @if(!empty($subfolder['subfolder']))
+                                                        <ul class="subfolder">
+                                                            @foreach($subfolder['subfolder'] as $subfolder2)
+                                                                <li>
                                                             <span class="folder" onclick="toggleSubfolder(this)"
                                                                   oncontextmenu="openCreateSubfolderModal(event, '{{$subfolder2['name']}}')">
                                                                 <i class="fas fa-folder me-2"></i>{{ $subfolder2['name']  ?? '' }}
                                                             </span>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            </li>
-                                        @endforeach
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                </li>
+                                            @endforeach
 
-                                    </ul>
-                                @endif
+                                        </ul>
+                                    @endif
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -167,14 +167,19 @@
 
     function toggleSubfolder(element) {
         var subfolder = element.nextElementSibling;
-        if (subfolder.style.display === "block") {
-            subfolder.style.display = "none";
-            element.querySelector("i").classList.replace("fa-folder-open", "fa-folder");
+        if (subfolder && subfolder.classList.contains('subfolder')) {
+            if (subfolder.style.display === "block") {
+                subfolder.style.display = "none";
+                element.querySelector("i").classList.replace("fa-folder-open", "fa-folder");
+            } else {
+                subfolder.style.display = "block";
+                element.querySelector("i").classList.replace("fa-folder", "fa-folder-open");
+            }
         } else {
-            subfolder.style.display = "block";
-            element.querySelector("i").classList.replace("fa-folder", "fa-folder-open");
+            console.warn("Subfolder element not found for:", element);
         }
     }
+
 </script>
 <style>
     .card-body {

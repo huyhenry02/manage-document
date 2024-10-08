@@ -12,8 +12,9 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-    public function show_register(): View|Factory|Application
+
+    public function postLoin()
     {
-        return view('auth.register');
+
     }
 }

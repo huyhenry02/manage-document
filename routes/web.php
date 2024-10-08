@@ -5,7 +5,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\CategoryController;
 
 Route::get('/', static function () {
     return view('index');
@@ -14,8 +13,7 @@ Route::get('/', static function () {
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::get('/login', [AuthController::class, 'show_login'])->name('document.index');
-    Route::get('/register', [AuthController::class, 'show_register'])->name('document.index');
+    Route::get('/login', [AuthController::class, 'show_login'])->name('auth.login');
 });
 
 Route::group([
