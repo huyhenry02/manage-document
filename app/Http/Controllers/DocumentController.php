@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Folder;
 use App\Models\Document;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -11,12 +12,26 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Comment\Doc;
 
 class DocumentController extends Controller
 {
     public function show_index(): View|Factory|Application
     {
-        return view('document.index');
+        $documents = Document::all();
+        $draftDocuments = Document::where('status', Document::STATUS_DRAFT)->get();
+        $pendingDocuments = Document::where('status', Document::STATUS_PENDING)->get();
+        $activeDocuments = Document::where('status', Document::STATUS_ACTIVE)->get();
+        $rejectDocuments = Document::where('status', Document::STATUS_REJECTED)->get();
+
+        return view('document.index',
+        [
+            'documents' => $documents,
+            'draftDocuments' => $draftDocuments,
+            'pendingDocuments' => $pendingDocuments,
+            'activeDocuments' => $activeDocuments,
+            'rejectDocuments' => $rejectDocuments
+        ]);
     }
 
     public function show_create(): View|Factory|Application
@@ -64,8 +79,12 @@ class DocumentController extends Controller
         try {
             $input = $request->all();
             $input['created_by_id'] = auth()->id();
+            $input['status'] = auth()->user()->role_type === User::ROLE_ADMIN ? Document::STATUS_ACTIVE : Document::STATUS_DRAFT;
+            $input['is_featured'] = $request->has('is_featured') ? 1 : 0;
             $document = new Document();
             $document->fill($input);
+            $document->save();
+            $document->code = 'DOC' . $document->folder_id . '-' . $document->id;
             $document->save();
             DB::commit();
             return redirect()->route('document.index');

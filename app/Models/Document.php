@@ -13,15 +13,21 @@ class Document extends Model
     use HasFactory;
 
     protected $table = 'documents';
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_REJECTED = 'rejected';
+
     protected $fillable = [
         'title',
         'content',
+        'code',
         'start_time',
         'end_time',
         'is_featured',
-        'is_public',
         'status',
         'note',
+        'folder_id',
         'created_by_id',
         'updated_by_id',
     ];
@@ -33,5 +39,10 @@ class Document extends Model
     public function updatedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'updated_by_id');
+    }
+
+    public function folder(): BelongsTo
+    {
+        return $this->belongsTo(Folder::class);
     }
 }

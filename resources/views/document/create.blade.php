@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox"
-                                               id="flexCheckDefault" value="is_featured">
+                                               id="flexCheckDefault" name="is_featured">
                                         <label class="form-check-label" for="flexCheckDefault">
                                             Bài viết nổi bật
                                         </label>

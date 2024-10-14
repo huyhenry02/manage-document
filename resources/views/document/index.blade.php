@@ -82,466 +82,54 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
+                                    @foreach( $documents as $document )
+                                        <tr>
+                                            <td class="text-left">
+                                                <div class="form-check
                                                 form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">Đã duyệt</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="option1"
+                                                    />
+                                                </div>
+                                            </td>
+                                            <td class="text-center">{{ $document->code ?? '' }}</td>
+                                            <td class="text-center">{{ $document->title ?? '' }}</td>
+                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->created_at ?? '' }}</td>
+                                            <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
+                                            <td class="text-center">{{ $document->status ?? '' }}</td>
+                                            <td class="text-center">
+                                                <div class="form-button-action">
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-info"
+                                                        href="detail_document.html"
+                                                    >
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-danger"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -575,476 +163,53 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
+                                    @foreach( $draftDocuments as $document )
+                                        <tr>
+                                            <td class="text-left">
+                                                <div class="form-check
                                                 form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="btn-group dropdown">
-                                                <button
-                                                    class="btn btn-primary dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    Chọn hành động
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-eye"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            Sửa Tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-times"></i>
-                                                            Xóa tài liệu
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fas fa-share"></i>
-                                                            Gửi đi
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                    </tr>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="option1"
+                                                    />
+                                                </div>
+                                            </td>
+                                            <td class="text-center">{{ $document->code ?? '' }}</td>
+                                            <td class="text-center">{{ $document->title ?? '' }}</td>
+                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->created_at ?? '' }}</td>
+                                            <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
+                                            <td class="text-center">
+                                                <div class="form-button-action">
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-info"
+                                                        href="detail_document.html"
+                                                    >
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-danger"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -1078,366 +243,53 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
+                                    @foreach( $pendingDocuments as $document )
+                                        <tr>
+                                            <td class="text-left">
+                                                <div class="form-check
                                                 form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="option1"
+                                                    />
+                                                </div>
+                                            </td>
+                                            <td class="text-center">{{ $document->code ?? '' }}</td>
+                                            <td class="text-center">{{ $document->title ?? '' }}</td>
+                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->created_at ?? '' }}</td>
+                                            <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
+                                            <td class="text-center">
+                                                <div class="form-button-action">
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-info"
+                                                        href="detail_document.html"
+                                                    >
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-danger"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -1471,456 +323,53 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
+                                    @foreach( $activeDocuments as $document )
+                                        <tr>
+                                            <td class="text-left">
+                                                <div class="form-check
                                                 form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="option1"
+                                                    />
+                                                </div>
+                                            </td>
+                                            <td class="text-center">{{ $document->code ?? '' }}</td>
+                                            <td class="text-center">{{ $document->title ?? '' }}</td>
+                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->created_at ?? '' }}</td>
+                                            <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
+                                            <td class="text-center">
+                                                <div class="form-button-action">
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-info"
+                                                        href="detail_document.html"
+                                                    >
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-danger"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -1954,502 +403,53 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
+                                    @foreach( $rejectDocuments as $document )
+                                        <tr>
+                                            <td class="text-left">
+                                                <div class="form-check
                                                 form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
-                                            <div class="form-check
-                                                form-check-inline">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="option1"
-                                                />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">BDC45454</td>
-                                        <td class="text-center">Tài liệu 1</td>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">23-08-2024</td>
-                                        <td class="text-center">Admin</td>
-                                        <td class="text-center">
-                                            <div class="form-button-action">
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-info"
-                                                    href="detail_document.html"
-                                                >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a
-                                                    type="button"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    href="#"
-                                                >
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="option1"
+                                                    />
+                                                </div>
+                                            </td>
+                                            <td class="text-center">{{ $document->code ?? '' }}</td>
+                                            <td class="text-center">{{ $document->title ?? '' }}</td>
+                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->created_at ?? '' }}</td>
+                                            <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
+                                            <td class="text-center">
+                                                <div class="form-button-action">
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-info"
+                                                        href="detail_document.html"
+                                                    >
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a
+                                                        type="button"
+                                                        title=""
+                                                        class="btn btn-link btn-danger"
+                                                        href="#"
+                                                    >
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

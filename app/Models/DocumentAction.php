@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ApprovalHistory extends Model
+class DocumentAction extends Model
 {
     use HasFactory;
 
-    protected $table = 'approval_history';
+    protected $table = 'document_actions';
 
     protected $fillable = [
         'document_id',
         'action',
         'reason',
-        'admin_id',
+        'user_id',
+        'user_type',
     ];
 
     public function document(): BelongsTo
@@ -24,8 +25,8 @@ class ApprovalHistory extends Model
         return $this->belongsTo(Document::class);
     }
 
-    public function admin(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'admin_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
