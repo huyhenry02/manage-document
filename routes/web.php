@@ -7,7 +7,7 @@ use App\Http\Controllers\FolderController;
 use App\Http\Controllers\DocumentController;
 
 Route::get('/', static function () {
-    return view('index');
+    return redirect()->route('auth.login');
 });
 
 Route::group([
@@ -19,7 +19,8 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'document'
+    'prefix' => 'document',
+    'middleware' => 'auth'
 ], static function () {
     Route::get('/', [DocumentController::class, 'show_index'])->name('document.index');
     Route::get('/create', [DocumentController::class, 'show_create'])->name('document.create');
@@ -30,7 +31,8 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'user'
+    'prefix' => 'user',
+    'middleware' => 'auth'
 ], static function () {
     Route::get('/', [UserController::class, 'show_index'])->name('user.index');
     Route::get('/create', [UserController::class, 'show_create'])->name('user.create');
@@ -39,7 +41,8 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'folder'
+    'prefix' => 'folder',
+    'middleware' => 'auth'
 ], static function () {
     Route::get('/', [FolderController::class, 'show_index'])->name('folder.index');
     Route::get('/update', [FolderController::class, 'show_update'])->name('folder.update');

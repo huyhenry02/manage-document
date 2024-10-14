@@ -44,13 +44,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('document_folders', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('document_id');
-            $table->unsignedBigInteger('folder_id');
-            $table->timestamps();
-        });
-
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_id');
@@ -80,11 +73,6 @@ return new class extends Migration
             $table->foreign('folder_id')->references('id')->on('folders')->onDelete('cascade');
             $table->foreign('created_by_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('cascade');
-        });
-
-        Schema::table('document_folders', function (Blueprint $table) {
-            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
-            $table->foreign('folder_id')->references('id')->on('folders')->onDelete('cascade');
         });
 
         Schema::table('document_actions', function (Blueprint $table) {
@@ -119,12 +107,6 @@ return new class extends Migration
             $table->dropForeign(['document_id']);
             $table->dropForeign(['user_id']);
         });
-
-        Schema::table('document_folders', function (Blueprint $table) {
-            $table->dropForeign(['document_id']);
-            $table->dropForeign(['folder_id']);
-        });
-
         Schema::table('folders', function (Blueprint $table) {
             $table->dropForeign(['created_by_id']);
             $table->dropForeign(['updated_by_id']);
@@ -138,7 +120,6 @@ return new class extends Migration
 
         Schema::dropIfExists('attachment_files');
         Schema::dropIfExists('comments');
-        Schema::dropIfExists('document_folders');
         Schema::dropIfExists('folders');
         Schema::dropIfExists('document_actions');
         Schema::dropIfExists('documents');

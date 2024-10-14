@@ -1,3 +1,4 @@
+@php use App\Models\User; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header d-flex align-items-center">
@@ -30,26 +31,28 @@
                                href="#pills-all-nobd" role="tab" aria-controls="pills-all-nobd"
                                aria-selected="true">Tất cả</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-draft-tab-nobd" data-bs-toggle="pill"
-                               href="#pills-draft-nobd" role="tab" aria-controls="pills-draft-nobd"
-                               aria-selected="false">Bản nháp</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-pending-tab-nobd" data-bs-toggle="pill"
-                               href="#pills-pending-nobd" role="tab" aria-controls="pills-pending-nobd"
-                               aria-selected="false">Chờ duyệt</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-approve-tab-nobd" data-bs-toggle="pill"
-                               href="#pills-approve-nobd" role="tab" aria-controls="pills-approve-nobd"
-                               aria-selected="false">Đã duyệt</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-reject-tab-nobd" data-bs-toggle="pill"
-                               href="#pills-reject-nobd" role="tab" aria-controls="pills-reject-nobd"
-                               aria-selected="false">Từ chối</a>
-                        </li>
+                        @if( auth()->user()->role_type === User::ROLE_AGENT )
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-draft-tab-nobd" data-bs-toggle="pill"
+                                   href="#pills-draft-nobd" role="tab" aria-controls="pills-draft-nobd"
+                                   aria-selected="false">Bản nháp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-pending-tab-nobd" data-bs-toggle="pill"
+                                   href="#pills-pending-nobd" role="tab" aria-controls="pills-pending-nobd"
+                                   aria-selected="false">Chờ duyệt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-approve-tab-nobd" data-bs-toggle="pill"
+                                   href="#pills-approve-nobd" role="tab" aria-controls="pills-approve-nobd"
+                                   aria-selected="false">Đã duyệt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-reject-tab-nobd" data-bs-toggle="pill"
+                                   href="#pills-reject-nobd" role="tab" aria-controls="pills-reject-nobd"
+                                   aria-selected="false">Từ chối</a>
+                            </li>
+                        @endif
                     </ul>
                     <div class="tab-content mt-2 mb-3" id="pills-without-border-tabContent">
                         <div class="tab-pane fade show active" id="pills-all-nobd" role="tabpanel"
@@ -84,7 +87,7 @@
                                     <tbody>
                                     @foreach( $documents as $document )
                                         <tr>
-                                            <td class="text-left">
+                                            <td class="text-left" width="5%">
                                                 <div class="form-check
                                                 form-check-inline">
                                                     <input
@@ -101,31 +104,23 @@
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">{{ $document->status ?? '' }}</td>
                                             <td class="text-center">
-                                                <div class="form-button-action">
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-info"
-                                                        href="detail_document.html"
-                                                    >
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-danger"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
+                                                <div class="dropdown action-dropdown">
+                                                    <button class="btn btn-link dropdown-toggle" type="button"
+                                                            id="actionDropdown" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                                        <a class="dropdown-item" href="">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                            <i class="fa fa-edit"></i> Sửa
+                                                        </a>
+                                                        <a class="dropdown-item text-danger" href="#">
+                                                            <i class="fa fa-times"></i> Xóa
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -181,33 +176,26 @@
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
-                                                <div class="form-button-action">
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-info"
-                                                        href="detail_document.html"
-                                                    >
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-danger"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
+                                                <div class="dropdown action-dropdown">
+                                                    <button class="btn btn-link dropdown-toggle" type="button"
+                                                            id="actionDropdown" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                                        <a class="dropdown-item" href="">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                            <i class="fa fa-edit"></i> Sửa
+                                                        </a>
+                                                        <a class="dropdown-item text-danger" href="#">
+                                                            <i class="fa fa-times"></i> Xóa
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </td>
+
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -261,31 +249,23 @@
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
-                                                <div class="form-button-action">
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-info"
-                                                        href="detail_document.html"
-                                                    >
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-danger"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
+                                                <div class="dropdown action-dropdown">
+                                                    <button class="btn btn-link dropdown-toggle" type="button"
+                                                            id="actionDropdown" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                                        <a class="dropdown-item" href="">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                            <i class="fa fa-edit"></i> Sửa
+                                                        </a>
+                                                        <a class="dropdown-item text-danger" href="#">
+                                                            <i class="fa fa-times"></i> Xóa
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -341,31 +321,23 @@
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
-                                                <div class="form-button-action">
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-info"
-                                                        href="detail_document.html"
-                                                    >
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-danger"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
+                                                <div class="dropdown action-dropdown">
+                                                    <button class="btn btn-link dropdown-toggle" type="button"
+                                                            id="actionDropdown" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                                        <a class="dropdown-item" href="">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                            <i class="fa fa-edit"></i> Sửa
+                                                        </a>
+                                                        <a class="dropdown-item text-danger" href="#">
+                                                            <i class="fa fa-times"></i> Xóa
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -421,31 +393,23 @@
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
-                                                <div class="form-button-action">
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-info"
-                                                        href="detail_document.html"
-                                                    >
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a
-                                                        type="button"
-                                                        title=""
-                                                        class="btn btn-link btn-danger"
-                                                        href="#"
-                                                    >
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
+                                                <div class="dropdown action-dropdown">
+                                                    <button class="btn btn-link dropdown-toggle" type="button"
+                                                            id="actionDropdown" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                                        <a class="dropdown-item" href="">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                            <i class="fa fa-edit"></i> Sửa
+                                                        </a>
+                                                        <a class="dropdown-item text-danger" href="#">
+                                                            <i class="fa fa-times"></i> Xóa
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -459,18 +423,68 @@
             </div>
         </div>
     </div>
+    <style>
+        .input-search-document {
+            position: relative;
+        }
+
+        .search-input {
+            padding-left: 35px;
+        !important;
+        }
+
+        .input-search-document input {
+            width: 500px;
+        }
+
+        .action-dropdown .dropdown-toggle {
+            background: none;
+            border: none;
+            color: #6c757d;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .action-dropdown .dropdown-toggle:hover {
+            color: #343a40;
+        }
+
+        .action-dropdown .dropdown-menu {
+            padding: 8px 0;
+            border-radius: 6px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            min-width: 120px;
+        }
+
+        .action-dropdown .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #212529;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .action-dropdown .dropdown-item i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .action-dropdown .dropdown-item:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+
+        .action-dropdown .dropdown-item.text-danger {
+            color: #dc3545;
+        }
+
+        .action-dropdown .dropdown-item.text-danger:hover {
+            color: #c82333;
+        }
+
+
+    </style>
 @endsection
-<style>
-    .input-search-document {
-        position: relative;
-    }
 
-    .search-input {
-        padding-left: 35px; !important;
-    }
-
-    .input-search-document input {
-        width: 500px;
-    }
-
-</style>

@@ -1,9 +1,50 @@
 [
     {
-        "id": 1,
         "name": "Admin",
         "email": "admin@gmail.com",
-        "password": "admin123",
+        "password": "123",
         "role_type": "admin"
+    },
+    {
+        "name": "Agent 1",
+        "email": "agent_1@gmail.com",
+        "password": "123",
+        "role_type": "agent"
+    },
+    {
+        "name": "Agent 2",
+        "email": "agent_2@gmail.com",
+        "password": "123",
+        "role_type": "agent"
+    },
+    {
+        "name": "Agent 3",
+        "email": "agent_3@gmail.com",
+        "password": "123",
+        "role_type": "agent"
+    },
+    {
+        "name": "Agent 4",
+        "email": "agent_4@gmail.com",
+        "password": "123",
+        "role_type": "agent"
+    },
+    {
+        "name": "Agent 5",
+        "email": "agent_5@gmail.com",
+        "password": "123",
+        "role_type": "agent"
+    },
+    {
+        "name": "Agent 6",
+        "email": "agent_6@gmail.com",
+        "password": "123",
+        "role_type": "agent"
+    },
+    {
+        "name": "Agent 7",
+        "email": "agent_7@gmail.com",
+        "password": "123",
+        "role_type": "agent"
     }
 ]
