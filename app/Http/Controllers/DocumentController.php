@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AttachmentFile;
-use App\Models\Folder;
-use App\Models\Document;
+use Exception;
 use App\Models\User;
+use App\Models\Folder;
+use App\Models\Comment;
+use App\Models\Document;
+use Illuminate\Http\Request;
+use App\Models\AttachmentFile;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DocumentController extends Controller
 {
@@ -44,9 +46,17 @@ class DocumentController extends Controller
 
     }
 
-    public function show_detail(): View|Factory|Application
+    public function show_detail(Document $model): View|Factory|Application
     {
-        return view('document.detail');
+        $comments = Comment::where('document_id', $model->id)
+            ->with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('document.detail',
+            [
+                'model' => $model,
+                'comments' => $comments
+            ]);
     }
 
     private function buildFolderTree(array $folders, $parentId = null): array
@@ -87,13 +97,13 @@ class DocumentController extends Controller
             $document->save();
             $document->code = 'DOC' . $document->folder_id . '-' . $document->id;
             $document->save();
-            if ($request->hasFile('attachment_files')) {
+            if ($request->hasFile('attachment_file')) {
                 $this->handleUploadFile($request, $document);
             }
             DB::commit();
             return redirect()->route('document.index');
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             return response()->json([
                 'message' => $e->getMessage()
@@ -101,16 +111,11 @@ class DocumentController extends Controller
         }
     }
 
-    public function updateDocument(Request $request, Document $model)
-    {
-
-    }
-
     private function handleUploadFile($request, $document): void
     {
-        $file = $request->file('attachment_fil');
+        $file = $request->file('attachment_file');
         $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $filePath = $file->storePubliclyAs('files/products', $fileName);
+        $filePath = $file->storePubliclyAs('files/document', $fileName);
         $data = asset('storage/' . $filePath);
         $attachment = new AttachmentFile();
         $input = [

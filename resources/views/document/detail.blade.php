@@ -1,3 +1,4 @@
+@php use App\Models\Document; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header">
@@ -7,9 +8,28 @@
             <div class="card">
                 <div class="card-header d-flex">
                     <h4 class="card-title text-center">Thông tin chính</h4>
-                    <button class="btn btn-success btn-sm ms-5" disabled="disabled">
-                        Đang hoạt động
-                    </button>
+                    @switch($model -> status)
+                        @case(Document::STATUS_ACTIVE)
+                            <button class="btn btn-success btn-sm ms-5" disabled="disabled">
+                                Đang hoạt động
+                            </button>
+                            @break
+                        @case(Document::STATUS_REJECTED)
+                            <button class="btn btn-danger btn-sm ms-5" disabled="disabled">
+                                Từ chối
+                            </button>
+                            @break
+                        @case(Document::STATUS_PENDING)
+                            <button class="btn btn-warning btn-sm ms-5" disabled="disabled">
+                                Chờ duyệt
+                            </button>
+                            @break
+                        @case(Document::STATUS_DRAFT)
+                            <button class="btn btn-warning btn-sm ms-5" disabled="disabled">
+                                Nháp
+                            </button>
+                            @break
+                    @endswitch
                 </div>
                 <div class="card-body">
                     <div class="main-information">
@@ -21,7 +41,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        B23232df
+                                        {{ $model->code ?? '' }}
                                     </p>
                                 </td>
                             </tr>
@@ -31,7 +51,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        Tài liệu ví dụ
+                                        {{ $model->title ?? '' }}
                                     </p>
                                 </td>
                             </tr>
@@ -41,7 +61,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        12:02:34 21-03-2023
+                                        {{ $model->created_at ?? '' }}
                                     </p>
                                 </td>
                             </tr>
@@ -51,7 +71,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        Admin
+                                        {{ $model->createdBy->name ?? '' }}
                                     </p>
                                 </td>
                             </tr>
@@ -68,15 +88,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="line-profile-tab" data-bs-toggle="pill"
-                               href="#line-profile" role="tab" aria-controls="pills-profile"
-                               aria-selected="false">
-                                <h4 class="card-title text-center">
-                                    Thông tin
-                                </h4>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" id="line-contact-tab" data-bs-toggle="pill"
                                href="#line-contact" role="tab" aria-controls="pills-contact"
                                aria-selected="false">
@@ -85,66 +96,41 @@
                                 </h4>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="line-comment-tab" data-bs-toggle="pill"
+                               href="#line-comment" role="tab" aria-controls="pills-comment"
+                               aria-selected="false">
+                                <h4 class="card-title text-center">
+                                    Bình luận
+                                </h4>
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content mt-3 mb-3" id="line-tabContent">
                         <div class="tab-pane fade show active" id="line-home" role="tabpanel"
                              aria-labelledby="line-home-tab">
-                            <p>
-                                1. Giới thiệu chung về tài liệu <br>
-                                Tài liệu này cung cấp cái nhìn tổng quan về cách xây dựng một hệ thống quản
-                                lý thông tin hiệu quả trong môi trường doanh nghiệp hiện đại.<br>
-
-                                2. Mục tiêu của tài liệu<br>
-
-                                - Cung cấp hướng dẫn chi tiết cho người đọc về các quy trình và phương pháp
-                                xây dựng hệ thống.<br>
-                                - Đảm bảo rằng tất cả các bên liên quan đều có cái nhìn rõ ràng về vai trò
-                                và trách nhiệm của mình.<br>
-                                3. Cấu trúc hệ thống quản lý thông tin<br>
-
-                                - Mô hình hệ thống quản lý thông tin gồm nhiều thành phần khác nhau, được
-                                kết nối thông qua một cơ sở dữ liệu trung tâm.<br>
-                                - Hệ thống này có khả năng lưu trữ, xử lý và phân tích dữ liệu một cách tự
-                                động.<br>
-                                4. Các bước triển khai hệ thống<br>
-
-                                - Bước 1: Xác định yêu cầu người dùng.<br>
-                                - Bước 2: Thiết kế cơ sở dữ liệu và các chức năng chính.<br>
-                                - Bước 3: Triển khai và kiểm thử hệ thống.<br>
-                                - Bước 4: Đào tạo người dùng và bảo trì hệ thống sau triển khai.<br>
-                                5. Lợi ích của hệ thống quản lý thông tin<br>
-
-                                - Giảm thiểu thời gian xử lý thông tin thủ công.<br>
-                                - Nâng cao độ chính xác và hiệu quả trong việc lưu trữ và truy xuất dữ liệu.<br>
-                                - Tăng cường khả năng phân tích và dự báo thông qua các công cụ thông
-                                minh.<br>
-
-                            </p>
-                        </div>
-                        <div class="tab-pane fade" id="line-profile" role="tabpanel"
-                             aria-labelledby="line-profile-tab">
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-typo" style="width: 100%">
                                         <tbody>
                                         <tr>
                                             <td style="padding: 5px !important; vertical-align: middle;">
-                                                <p>Loại tài liệu</p>
+                                                <p>Thư mục</p>
                                             </td>
-                                            <td style="padding: 5px !important; vertical-align: middle;">
+                                            <td style="padding: 5px !important; vertical-align: middle; max-width: 300px">
                                                 <p class="text-muted">
-                                                    Tài liệu hướng dẫn
+                                                    {{ $model->folder->name ?? '' }}
                                                 </p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="padding: 5px !important;">
-                                                <p>Thể loại</p>
+                                                <p>Nội dung</p>
                                             </td>
-                                            <td style="padding: 5px !important;">
+                                            <td style="padding: 5px !important; max-width: 300px">
                                                 <p class="text-muted
                                                             ">
-                                                    Hệ thống thông tin
+                                                    {{ $model->content ?? '' }}
                                                 </p>
                                             </td>
                                         </tr>
@@ -152,15 +138,24 @@
                                             <td style="padding: 5px !important;">
                                                 <p>Tệp đính kèm</p>
                                             </td>
-                                            <td style="padding: 5px !important;">
-                                                <a href="/assets/example-file/K56SD3_20D191141_Vũ%20Thị%20Hải%20Yến__KLTN.pdf"
-                                                   class="text-muted" download>File Attachment 1</a><br>
-                                                <a href="/assets/example-file/K56SD3_20D191141_Vũ%20Thị%20Hải%20Yến__KLTN.pdf"
-                                                   class="text-muted" download>File Attachment 2</a><br>
-                                                <a href="/assets/example-file/K56SD3_20D191141_Vũ%20Thị%20Hải%20Yến__KLTN.pdf"
-                                                   class="text-muted" download>File Attachment 3</a><br>
-                                                <a href="/assets/example-file/K56SD3_20D191141_Vũ%20Thị%20Hải%20Yến__KLTN.pdf"
-                                                   class="text-muted" download>File Attachment 4</a>
+                                            <td style="padding: 5px !important; max-width: 300px">
+                                                @if( !empty($model->attachmentFiles) && count($model->attachmentFiles) > 0 )
+                                                    <table style="width: 100%">
+                                                        <tbody>
+                                                        @foreach( $model->attachmentFiles as $attachment )
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="{{ $attachment->file_path }}" download>
+                                                                        <i class="fas fa-file-pdf"></i>
+                                                                        <span>{{ $attachment->file_name }}</span>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                @endif
+
                                             </td>
                                         </tr>
                                         </tbody>
@@ -239,9 +234,126 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="line-comment" role="tabpanel" aria-labelledby="line-comment-tab">
+                            @if(!empty($comments) && count($model->comments) > 0)
+                                <div class="comments-list" id="comments-list">
+                                    @foreach( $comments as $comment )
+                                        <div class="comment">
+                                            <p>
+                                                <strong>{{ $comment->user?->name ?? 'Người dùng' }}</strong>: {{ $comment->content ?? '' }}
+                                                <span class="comment-time">{{ $comment->created_at->format('H:i d/m/Y') }}</span> <!-- Hiển thị giờ -->
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+                            <div class="comment-input">
+                                <textarea id="comment-content" placeholder="Nhập bình luận của bạn..." rows="3"></textarea>
+                                <button id="submit-comment" class="submit-comment">Gửi</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submit-comment').on('click', function () {
+                const documentId = {{ $model->id }};
+                const content = $('#comment-content').val();
+
+                $.ajax({
+                    url: '{{ route('user.comment') }}',
+                    method: 'POST', // Đảm bảo phương thức là POST
+                    data: {
+                        document_id: documentId,
+                        content: content,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (response) {
+                        $('#comment-content').val('');
+
+                        const commentsHtml = response.comments.map(comment => `
+                    <div class="comment">
+                        <p>
+                            <strong>${comment.user.name}:</strong> ${comment.content}
+                            <span class="comment-time">${new Date(comment.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} ${new Date(comment.created_at).toLocaleDateString()}</span>
+                        </p>
+                    </div>
+                `).join('');
+
+                        $('#comments-list').html(commentsHtml);
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+    </script>
+    <style>
+
+        .comments-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .comment {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment p {
+            margin: 0;
+        }
+
+        .comment-input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comment-input textarea {
+            resize: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .comment-input .submit-comment {
+            align-self: flex-end;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .comment-input .submit-comment:hover {
+            background-color: #0056b3;
+        }
+        .comment {
+            margin-bottom: 15px;
+        }
+
+        .comment-time {
+            float: right;
+            font-size: 0.9em;
+            color: #999;
+        }
+
+    </style>
 @endsection

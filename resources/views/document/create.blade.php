@@ -9,7 +9,7 @@
                     <div class="card-title">Thông tin tài liệu</div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('document.store') }}" method="post">
+                    <form action="{{ route('document.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="file">File đính kèm</label>
-                                        <input type="file" class="form-control" id="file"/>
+                                        <input type="file" class="form-control" id="file" name="attachment_file"/>
                                     </div>
                                 </div>
                             </div>

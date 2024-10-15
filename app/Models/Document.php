@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,5 +43,15 @@ class Document extends Model
     public function folder(): BelongsTo
     {
         return $this->belongsTo(Folder::class);
+    }
+
+    public function attachmentFiles(): HasMany
+    {
+        return $this->hasMany(AttachmentFile::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }

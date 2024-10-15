@@ -111,7 +111,7 @@
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item" href="">
+                                                        <a class="dropdown-item" href="{{ route('document.detail', $document->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
                                                         <a class="dropdown-item" href="#">
@@ -183,7 +183,7 @@
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item" href="">
+                                                        <a class="dropdown-item" href="{{ route('document.detail', $document->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
                                                         <a class="dropdown-item" href="#">
@@ -256,7 +256,7 @@
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item" href="">
+                                                        <a class="dropdown-item" href="{{ route('document.detail', $document->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
                                                         <a class="dropdown-item" href="#">
@@ -328,7 +328,7 @@
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item" href="">
+                                                        <a class="dropdown-item" href="{{ route('document.detail', $document->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
                                                         <a class="dropdown-item" href="#">
@@ -400,7 +400,7 @@
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item" href="">
+                                                        <a class="dropdown-item" href="{{ route('document.detail', $document->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
                                                         <a class="dropdown-item" href="#">

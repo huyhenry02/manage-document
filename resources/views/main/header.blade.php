@@ -47,6 +47,9 @@
                         @case('user.index')
                             Danh Sách
                             @break
+                        @case('document.detail')
+                            Chi tiết
+                            @break
 
                     @endswitch
 
@@ -69,6 +72,9 @@
                                 @case('document.create')
                                     Quản lý tài liệu
                                     @break
+                                @case('document.detail')
+                                    Quản lý tài liệu
+                                    @break
                                 @case('folder.index')
                                     Quản lý thư mục
                                     @break
@@ -87,6 +93,9 @@
                             @switch(Route::currentRouteName())
                                 @case('document.index')
                                     Danh Sách tài liệu
+                                    @break
+                                @case('document.detail')
+                                    Thông tin tài liệu
                                     @break
                                 @case('document.create')
                                     Thêm mới tài liệu

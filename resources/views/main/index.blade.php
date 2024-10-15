@@ -8,9 +8,6 @@
         content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
         name="viewport"
     />
-    <!-- Place the first <script> tag in your HTML's <head> -->
-    <script src="https://cdn.tiny.cloud/1/eggryg0q6wnpxzmvxbb3xxbywaki58ri9bcabtatpbsa4onx/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
     <link
         rel="icon"
         href="/assets/img/kaiadmin/favicon.ico"

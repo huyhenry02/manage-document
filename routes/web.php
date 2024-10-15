@@ -25,7 +25,7 @@ Route::group([
     Route::get('/', [DocumentController::class, 'show_index'])->name('document.index');
     Route::get('/create', [DocumentController::class, 'show_create'])->name('document.create');
     Route::get('/update', [DocumentController::class, 'show_update'])->name('document.update');
-    Route::get('/detail', [DocumentController::class, 'show_detail'])->name('document.detail');
+    Route::get('/detail/{model}', [DocumentController::class, 'show_detail'])->name('document.detail');
 
     Route::post('/create', [DocumentController::class, 'createDocument'])->name('document.store');
 });
@@ -40,7 +40,9 @@ Route::group([
 
     Route::post('/create', [UserController::class, 'createAgent'])->name('user.store');
     Route::post('/update/{model}', [UserController::class, 'updateAgent'])->name('user.update');
+    Route::post('/comment', [UserController::class, 'comment'])->name('user.comment');
     Route::get('/delete/{model}', [UserController::class, 'deleteAgent'])->name('user.delete');
+
 });
 
 Route::group([

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 
 class UserController extends Controller
 {
@@ -85,6 +87,28 @@ class UserController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function comment(Request $request): JsonResponse
+    {
+        try {
+            $input = $request->all();
+            $comment = new Comment();
+            $input['user_id'] = auth()->id();
+            $comment->fill($input);
+            $comment->save();
+            $comments = Comment::where('document_id', $input['document_id'])
+                ->with('user')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            return response()->json([
+                'comments' => $comments
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
         }
     }
 }

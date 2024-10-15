@@ -19,6 +19,7 @@ class AttachmentFile extends Model
         'file_size',
         'file_type',
         'uploaded_by_id',
+        'mime_type'
     ];
 
     public function document(): BelongsTo
