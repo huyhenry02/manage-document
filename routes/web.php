@@ -36,8 +36,11 @@ Route::group([
 ], static function () {
     Route::get('/', [UserController::class, 'show_index'])->name('user.index');
     Route::get('/create', [UserController::class, 'show_create'])->name('user.create');
-    Route::get('/update', [UserController::class, 'show_update'])->name('user.update');
-    Route::get('/detail', [UserController::class, 'show_detail'])->name('user.detail');
+    Route::get('/update/{model}', [UserController::class, 'show_update'])->name('user.update');
+
+    Route::post('/create', [UserController::class, 'createAgent'])->name('user.store');
+    Route::post('/update/{model}', [UserController::class, 'updateAgent'])->name('user.update');
+    Route::get('/delete/{model}', [UserController::class, 'deleteAgent'])->name('user.delete');
 });
 
 Route::group([

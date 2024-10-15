@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttachmentFile;
 use App\Models\Folder;
 use App\Models\Document;
 use App\Models\User;
@@ -12,7 +13,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Comment\Doc;
 
 class DocumentController extends Controller
 {
@@ -25,13 +25,13 @@ class DocumentController extends Controller
         $rejectDocuments = Document::where('status', Document::STATUS_REJECTED)->get();
 
         return view('document.index',
-        [
-            'documents' => $documents,
-            'draftDocuments' => $draftDocuments,
-            'pendingDocuments' => $pendingDocuments,
-            'activeDocuments' => $activeDocuments,
-            'rejectDocuments' => $rejectDocuments
-        ]);
+            [
+                'documents' => $documents,
+                'draftDocuments' => $draftDocuments,
+                'pendingDocuments' => $pendingDocuments,
+                'activeDocuments' => $activeDocuments,
+                'rejectDocuments' => $rejectDocuments
+            ]);
     }
 
     public function show_create(): View|Factory|Application
@@ -48,6 +48,7 @@ class DocumentController extends Controller
     {
         return view('document.detail');
     }
+
     private function buildFolderTree(array $folders, $parentId = null): array
     {
         $branch = [];
@@ -86,14 +87,41 @@ class DocumentController extends Controller
             $document->save();
             $document->code = 'DOC' . $document->folder_id . '-' . $document->id;
             $document->save();
+            if ($request->hasFile('attachment_files')) {
+                $this->handleUploadFile($request, $document);
+            }
             DB::commit();
             return redirect()->route('document.index');
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
                 'message' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function updateDocument(Request $request, Document $model)
+    {
+
+    }
+
+    private function handleUploadFile($request, $document): void
+    {
+        $file = $request->file('attachment_fil');
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storePubliclyAs('files/products', $fileName);
+        $data = asset('storage/' . $filePath);
+        $attachment = new AttachmentFile();
+        $input = [
+            'document_id' => $document->id,
+            'file_path' => $data,
+            'file_name' => $fileName,
+            'file_size' => $file->getSize(),
+            'mime_type' => $file->getClientMimeType(),
+            'uploaded_by_id' => auth()->id()
+        ];
+        $attachment->fill($input);
+        $attachment->save();
     }
 }

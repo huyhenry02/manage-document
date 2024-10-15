@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,9 +16,9 @@ class UserController extends Controller
     {
         $agents = User::where('role_type', User::ROLE_AGENT)->get();
         return view('user.index',
-        [
-            'agents' => $agents,
-        ]);
+            [
+                'agents' => $agents,
+            ]);
     }
 
     public function show_create(): View|Factory|Application
@@ -31,9 +33,58 @@ class UserController extends Controller
 
     }
 
-    public function show_update(): View|Factory|Application
+    public function show_update(User $model): View|Factory|Application
     {
-        return view('user.update');
+        return view('user.update',
+            [
+                'model' => $model,
+            ]);
 
+    }
+
+    public function createAgent(Request $request): RedirectResponse
+    {
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $input['role_type'] = User::ROLE_AGENT;
+            $input['password'] = bcrypt('123');
+            $agent = new User();
+            $agent->fill($input);
+            $agent->save();
+            DB::commit();
+            return redirect()->route('user.index')->with('success', 'Agent created successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function updateAgent(Request $request, User $model): RedirectResponse
+    {
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $model->fill($input);
+            $model->save();
+            DB::commit();
+            return redirect()->route('user.index')->with('success', 'Agent updated successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function deleteAgent(User $model): RedirectResponse
+    {
+        DB::beginTransaction();
+        try {
+            $model->delete();
+            DB::commit();
+            return redirect()->route('user.index')->with('success', 'Agent deleted successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

@@ -1,3 +1,4 @@
+@php use App\Models\User; @endphp
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
         <!-- Logo Header -->
@@ -63,22 +64,24 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse show" href="#maps">
-                        <i class="fas fa-user-cog"></i>
-                        <p>Quản lý người dùng</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse show" id="maps">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="{{route('user.index')}}">
-                                    <span class="sub-item">Danh sách người dùng</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                @if(auth()->user()->role_type === User::ROLE_ADMIN)
+                    <li class="nav-item">
+                        <a data-bs-toggle="collapse show" href="#maps">
+                            <i class="fas fa-user-cog"></i>
+                            <p>Quản lý người dùng</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse show" id="maps">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{route('user.index')}}">
+                                        <span class="sub-item">Danh sách người dùng</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

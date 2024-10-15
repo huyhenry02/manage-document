@@ -13,7 +13,7 @@
 
         <a
             class="btn btn-primary btn-round ms-auto"
-            href="{{ route('document.create') }}"
+            href="{{ route('user.create') }}"
         >
             <i class="fa fa-plus"></i>
             Thêm mới agent
@@ -72,13 +72,10 @@
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item" href="">
-                                                            <i class="fas fa-eye"></i> Xem
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
+                                                        <a class="dropdown-item" href="{{ route('user.update', $user->id) }}">
                                                             <i class="fa fa-edit"></i> Sửa
                                                         </a>
-                                                        <a class="dropdown-item text-danger" href="#">
+                                                        <a class="dropdown-item text-danger" href="{{ route('user.delete', $user->id) }}">
                                                             <i class="fa fa-times"></i> Xóa
                                                         </a>
                                                     </div>

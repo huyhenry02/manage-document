@@ -44,6 +44,9 @@
                         @case('folder.index')
                             Danh Sách
                             @break
+                        @case('user.index')
+                            Danh Sách
+                            @break
 
                     @endswitch
 
@@ -69,6 +72,9 @@
                                 @case('folder.index')
                                     Quản lý thư mục
                                     @break
+                                @case('user.index')
+                                    Quản lý người dùng
+                                    @break
 
                             @endswitch
                         </a>
@@ -87,6 +93,9 @@
                                     @break
                                 @case('folder.index')
                                     Danh sách thư mục
+                                    @break
+                                @case('user.index')
+                                    Danh sách người dùng
                                     @break
 
                             @endswitch
