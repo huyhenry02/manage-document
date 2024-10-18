@@ -99,7 +99,7 @@
                                             </td>
                                             <td class="text-center">{{ $document->code ?? '' }}</td>
                                             <td class="text-center">{{ $document->title ?? '' }}</td>
-                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->comments()->count() ?? '' }}</td>
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">{{ $document->status ?? '' }}</td>
@@ -172,7 +172,7 @@
                                             </td>
                                             <td class="text-center">{{ $document->code ?? '' }}</td>
                                             <td class="text-center">{{ $document->title ?? '' }}</td>
-                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->comments()->count() ?? '' }}</td>
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
@@ -245,7 +245,7 @@
                                             </td>
                                             <td class="text-center">{{ $document->code ?? '' }}</td>
                                             <td class="text-center">{{ $document->title ?? '' }}</td>
-                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->comments()->count() ?? '' }}</td>
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
@@ -317,7 +317,7 @@
                                             </td>
                                             <td class="text-center">{{ $document->code ?? '' }}</td>
                                             <td class="text-center">{{ $document->title ?? '' }}</td>
-                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->comments()->count() ?? '' }}</td>
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
@@ -389,7 +389,7 @@
                                             </td>
                                             <td class="text-center">{{ $document->code ?? '' }}</td>
                                             <td class="text-center">{{ $document->title ?? '' }}</td>
-                                            <td class="text-center">6</td>
+                                            <td class="text-center">{{ $document->comments()->count() ?? '' }}</td>
                                             <td class="text-center">{{ $document->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $document->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">

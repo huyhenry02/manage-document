@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Folder;
+use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -13,11 +15,19 @@ use Illuminate\Foundation\Application;
 
 class FolderController extends Controller
 {
-    public function show_index(): View|Factory|Application
+    public function show_index($folder_id): View|Factory|Application
     {
-        $categories = Folder::all()->toArray();
-        $data = $this->buildFolderTree($categories);
-        return view('folder.index', ['data' => $data]);
+        $folders = Folder::all()->toArray();
+        $documents = Document::where('folder_id', $folder_id)->get();
+        $folder = Folder::find($folder_id);
+        $data = $this->buildFolderTree($folders);
+        return view('folder.index',
+            [
+                'data' => $data,
+                'documents' => $documents,
+                'folders' => $folders,
+                'folder' => $folder
+            ]);
     }
 
     private function buildFolderTree(array $categories, $parentId = null): array
@@ -51,16 +61,22 @@ class FolderController extends Controller
 
     }
 
+    public function getDocumentsOfFolder($folder_id): View|Factory|Application
+    {
+        $documents = Document::where('folder_id', $folder_id)->get();
+        $folder = Folder::find($folder_id);
+        return view('partials.documents-of-folder', [
+            'documents' => $documents,
+            'folder' => $folder
+        ]);
+    }
+
     public function store(Request $request): RedirectResponse
     {
         DB::beginTransaction();
         try {
             $input = $request->all();
-            if (!empty($input['parent_id']))
-            {
-                $input['parent_id'] = null;
-            }
-            $input['create_user_id'] = auth()->id();
+            $input['created_by_id'] = auth()->id();
             $folder = new Folder();
             $folder->fill($input);
             $folder->save();
@@ -71,4 +87,16 @@ class FolderController extends Controller
             return redirect()->back();
         }
     }
+
+    public function moveDocuments(Request $request): JsonResponse
+    {
+        $documentIds = $request->input('document_ids');
+        $folderId = $request->input('folder_id');
+
+        Document::whereIn('id', $documentIds)->update(['folder_id' => $folderId]);
+
+        return response()->json(['message' => 'Moved successfully']);
+    }
+
+
 }

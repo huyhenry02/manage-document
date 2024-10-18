@@ -42,7 +42,7 @@
                     <div class="collapse show" id="dashboard">
                         <ul class="nav nav-collapse show">
                             <li>
-                                <a href="{{route('document.index')}}">
+                                <a href="{{ route('document.index') }}">
                                     <span class="sub-item">Danh sách tài liệu</span>
                                 </a>
                             </li>
@@ -52,7 +52,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('folder.index')}}">
+                                <a href="{{ route('folder.index', 1) }}">
                                     <span class="sub-item">Thư mục tài liệu</span>
                                 </a>
                             </li>

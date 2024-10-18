@@ -49,10 +49,13 @@ Route::group([
     'prefix' => 'folder',
     'middleware' => 'auth'
 ], static function () {
-    Route::get('/', [FolderController::class, 'show_index'])->name('folder.index');
+    Route::get('/{folder_id}', [FolderController::class, 'show_index'])->name('folder.index');
     Route::get('/update', [FolderController::class, 'show_update'])->name('folder.update');
     Route::get('/detail', [FolderController::class, 'show_detail'])->name('folder.detail');
+    Route::get('/folder-documents/{folder_id}', [FolderController::class, 'getDocumentsOfFolder'])->name('folder.documents');
+
 
     Route::post('/', [FolderController::class, 'store'])->name('folder.store');
+    Route::post('/documents/move', [FolderController::class, 'moveDocuments'])->name('folder.moveDocuments');
 });
 
