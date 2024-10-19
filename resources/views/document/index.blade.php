@@ -31,7 +31,7 @@
                                href="#pills-all-nobd" role="tab" aria-controls="pills-all-nobd"
                                aria-selected="true">Tất cả</a>
                         </li>
-                        @if( auth()->user()->role_type === User::ROLE_AGENT )
+                        @if( auth()->user()->role_type === User::ROLE_ADMIN )
                             <li class="nav-item">
                                 <a class="nav-link" id="pills-draft-tab-nobd" data-bs-toggle="pill"
                                    href="#pills-draft-nobd" role="tab" aria-controls="pills-draft-nobd"

@@ -57,5 +57,7 @@ Route::group([
 
     Route::post('/', [FolderController::class, 'store'])->name('folder.store');
     Route::post('/documents/move', [FolderController::class, 'moveDocuments'])->name('folder.moveDocuments');
+    Route::post('/documents/delete', [FolderController::class, 'deleteDocumentsOfFolder'])->name('folder.deleteDocumentsOfFolder');
+    Route::post('/delete/{model}', [FolderController::class, 'deleteFolder'])->name('folder.delete');
 });
 

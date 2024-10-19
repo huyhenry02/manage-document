@@ -11,9 +11,10 @@
                         <button class="btn btn-outline-info me-2" id="moveButton"><i
                                 class="fas fa-th-large"></i> Di chuyển bài viết
                         </button>
-                        <button class="btn btn-outline-danger me-2"><i class="fas fa-times"></i> Xóa bài viết khỏi thư
-                            mục
-                        </button>
+{{--                        <button class="btn btn-outline-danger me-2" id="deleteButton"><i class="fas fa-times"></i> Xóa--}}
+{{--                            bài viết khỏi thư--}}
+{{--                            mục--}}
+{{--                        </button>--}}
                     </div>
                     <div class="input-search-category">
                         <label>
@@ -22,7 +23,6 @@
                         </label>
                     </div>
                 </div>
-
                 <div class="card-body d-flex">
                     <div class="list-categories">
                         @include('partials.folder-list', ['folders' => $data])
@@ -35,127 +35,10 @@
 
         </div>
     </div>
-    <div class="modal fade" id="createParentCategory" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Tạo mới thư mục</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('folder.store') }}" method="post">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="folderName">Tên thư mục</label>
-                            <input type="text" class="form-control" id="folderName" placeholder="Nhập tên thư mục"
-                                   name="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="folderName">Mã thư mục</label>
-                            <input type="text" class="form-control" id="folderName"
-                                   name="code">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="createChildrenCategory" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tạo mới thư mục con</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('folder.store') }}" method="post">
-                    @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Thư mục cha:</label>
-                        <span id="parentFolderName" class="font-weight-bold">Folder 1</span>
-                        <input type="hidden" class="form-control" id="parentFolderId" name="parent_id" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="folderName">Tên thư mục</label>
-                        <input type="text" class="form-control" id="folderName" placeholder="Nhập tên thư mục"
-                               name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="folderName">Mã thư mục</label>
-                        <input type="text" class="form-control" id="folderName"
-                               name="code">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="moveDocumentsModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Chọn thư mục muốn di chuyển</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul class="folder-list">
-                        @foreach( $folders as $folder )
-                            <li>
-                                <input type="radio" name="destination_folder"
-                                       value="{{ $folder['id'] }}"> {{ $folder['name'] }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="confirmMoveButton">Di chuyển</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="moveDocumentsModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Chọn thư mục muốn di chuyển</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul class="folder-list">
-                        @foreach( $folders as $folder )
-                            <li>
-                                <input type="radio" name="destination_folder" value="{{ $folder['id'] }}"> {{ $folder['name'] }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="confirmMoveButton">Di chuyển</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--MODAL--}}
+    @include('modals.create-children-folder')
+    @include('modals.create-parent-folder')
+    @include('modals.move-document', ['folders' => $folders])
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
@@ -166,7 +49,6 @@
         document.getElementById('parentFolderId').value = parentId;
         $('#createChildrenCategory').modal('show');
     }
-
     function toggleSubfolder(element) {
         var subfolder = element.nextElementSibling;
         var folderId = element.getAttribute('data-folder-id');
@@ -207,7 +89,6 @@
             }
         });
     }
-
     $(document).ready(function() {
         function setupCheckboxes() {
             $('.document-item input[type="checkbox"]').on('change', function() {
@@ -436,5 +317,4 @@
         border-color: #007bff;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
     }
-
 </style>

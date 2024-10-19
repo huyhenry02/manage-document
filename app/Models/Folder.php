@@ -39,4 +39,9 @@ class Folder extends Model
     {
         return $this->hasMany(__CLASS__, 'parent_id');
     }
+
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class, 'folder_id');
+    }
 }

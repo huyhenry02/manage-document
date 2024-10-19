@@ -92,11 +92,33 @@ class FolderController extends Controller
     {
         $documentIds = $request->input('document_ids');
         $folderId = $request->input('folder_id');
-
-        Document::whereIn('id', $documentIds)->update(['folder_id' => $folderId]);
+        Document::whereIn('id', $documentIds)->update([
+            'folder_id' => $folderId,
+            'updated_by_id' => auth()->id()
+        ]);
 
         return response()->json(['message' => 'Moved successfully']);
     }
 
+    public function deleteDocumentsOfFolder(Request $request): JsonResponse
+    {
+        $documentIds = $request->input('document_ids');
 
+        if (!empty($documentIds)) {
+            Document::whereIn('id', $documentIds)->delete();
+            return response()->json(['message' => 'Deleted successfully']);
+        }
+
+        return response()->json(['message' => 'No documents selected'], 400);
+    }
+
+    public function deleteFolder(Folder $model): JsonResponse
+    {
+        if ($model->documents()->count() > 0) {
+            return response()->json(['message' => 'Thư mục này vẫn đang chưa tài liêu. Hãy xóa nó trước hoặc di chuyển sang thư mục khác'], 400);
+        }
+        $model->delete();
+        $model->children()->delete();
+        return response()->json(['message' => 'Deleted successfully']);
+    }
 }

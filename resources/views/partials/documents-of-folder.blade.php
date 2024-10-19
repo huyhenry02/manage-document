@@ -1,7 +1,5 @@
 <div class="mb-3">
-    <span>
-        Thư mục : <span class="folder-name">{{ $folder->name }}</span>
-    </span>
+    <span class="folder-name">{{ $folder->name }}</span>
 </div>
 <div class="list-group">
     <div class="list-group-item">
