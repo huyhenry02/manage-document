@@ -19,7 +19,7 @@
                                     <tr>
                                         <th class="text-center">STT</th>
                                         <th class="text-center">Hành động</th>
-                                        <th class="text-center">Nội dung</th>
+                                        <th class="text-center">Lý do</th>
                                         <th class="text-center">Trạng thái</th>
                                         <th class="text-center">Thời gian</th>
                                         <th class="text-center">Người gửi yêu cầu</th>
@@ -31,16 +31,16 @@
                                         <tr>
                                             <td class="text-center">{{ $key + 1 }}</td>
                                             @switch( $request->action )
-                                                @case(DocumentAction::ACTION_PUBLIC_DOCUMENT)
+                                                @case( DocumentAction::ACTION_PUBLIC_DOCUMENT )
                                                     <td class="text-center">Công khai tài liệu</td>
                                                     @break
-                                                @case(DocumentAction::ACTION_EDIT_DOCUMENT)
+                                                @case( DocumentAction::ACTION_EDIT_DOCUMENT )
                                                     <td class="text-center">Yêu cầu chỉnh sửa tài liệu</td>
                                                     @break
                                             @endswitch
                                             <td class="text-center">{{ $request->reason ?? '' }}</td>
                                             @switch( $request->status )
-                                                @case(DocumentAction::STATUS_PENDING)
+                                                @case( DocumentAction::STATUS_PENDING )
                                                     <td class="text-center text-primary">Chờ xác nhận</td>
                                                     @break
                                                 @case( DocumentAction::STATUS_APPROVED )
@@ -53,10 +53,17 @@
                                             <td class="text-center">{{ $request->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $request->createdBy?->name ?? '' }}</td>
                                             <td class="text-center text-primary">
-                                                <a class="dropdown-item"
-                                                   href="{{ route('document.showRequestDetail', $request->id) }}">
-                                                    <i class="fas fa-eye"></i> Xem
-                                                </a>
+                                                @if( $request->action === DocumentAction::ACTION_PUBLIC_DOCUMENT )
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('document.showRequestPublicDetail', $request->id) }}">
+                                                        <i class="fas fa-eye"></i> Xem
+                                                    </a>
+                                                @else
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('document.showRequestUpdateDetail', $request->id) }}">
+                                                        <i class="fas fa-eye"></i> Xem
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -128,8 +135,6 @@
             .action-dropdown .dropdown-item.text-danger:hover {
                 color: #c82333;
             }
-
-
         </style>
 @endsection
 

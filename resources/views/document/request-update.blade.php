@@ -10,7 +10,7 @@
                     <div class="card-title">Thông tin tài liệu</div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('document.updateDocument', $model->id) }}" method="post"
+                    <form action="{{ route('document.requestUpdateForAgent', $model->id) }}" method="post"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -21,14 +21,14 @@
                                         type="text"
                                         class="form-control"
                                         id="title"
-                                        name="title"
+                                        name="data[title]"
                                         value="{{ $model->title }}"
                                     />
                                 </div>
                                 <div class="form-group">
                                     <label for="folderTree">Thư mục bài viết</label>
                                     <select class="form-select" id="folderTree" aria-label="Default select example"
-                                            name="folder_id">
+                                            name="data[folder_id]">
                                         <option selected
                                                 value="{{ $model->folder_id }}"> {{ $model->folder?->name ?? '' }}</option>
                                         @foreach ($folderTree as $folder)
@@ -38,29 +38,35 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Lý do yêu cầu chỉnh sửa</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                                              name="reason"></textarea>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Nội dung</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="9"
-                                              name="content">{{ $model->content ?? '' }}</textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                                              name="data[content]">{{ $model->content ?? '' }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Ghi chú</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="9"
-                                              name="note">{{ $model->note ?? '' }}</textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                                              name="data[note]">{{ $model->note ?? '' }}</textarea>
                                 </div>
                                 <div class="form-group" style="width: 40%">
                                     <label>Thời gian hiệu lực</label>
                                     <div class="d-flex">
                                         <label for="start_time"></label>
-                                        <input id="start_time" class="form-control" type="date" name="start_time"
+                                        <input id="start_time" class="form-control" type="date" name="data[start_time]"
                                                value="{{ $model->start_time }}"/>
                                         <label for="end_time"></label>
-                                        <input id="end_time" class="form-control" type="date" name="end_time"
+                                        <input id="end_time" class="form-control" type="date" name="data[end_time]"
                                                value="{{ $model->end_time }}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="file">File đính kèm</label>
-                                    <input type="file" class="form-control" id="file" name="attachment_file"/>
+                                    <input type="file" class="form-control" id="file" name="data[attachment_file]"/>
                                     <div id="filePreview" class="mt-3">
                                         @if( !empty($model->attachmentFiles) && count($model->attachmentFiles) > 0 )
                                             <table style="width: 100%">

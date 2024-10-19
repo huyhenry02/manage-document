@@ -27,12 +27,18 @@ Route::group([
     Route::get('/show-list-request-for-agent', [DocumentController::class, 'showListRequestForAgent'])->name('document.showListRequestForAgent');
     Route::get('/show-list-request-for-admin', [DocumentController::class, 'showListRequestForAdmin'])->name('document.showListRequestForAdmin');
     Route::get('/creat', [DocumentController::class, 'show_create'])->name('document.create');
-    Route::get('/update', [DocumentController::class, 'show_update'])->name('document.update');
+    Route::get('/update/{model}', [DocumentController::class, 'show_update'])->name('document.update');
+    Route::get('/request-update/{model}', [DocumentController::class, 'show_request_update'])->name('document.show_request_update');
     Route::get('/detail/{model}', [DocumentController::class, 'show_detail'])->name('document.detail');
-    Route::get('/detail-request/{documentAction}', [DocumentController::class, 'showRequestDetail'])->name('document.showRequestDetail');
+    Route::get('/detail-request-public/{documentAction}', [DocumentController::class, 'showRequestPublicDetail'])->name('document.showRequestPublicDetail');
+    Route::get('/detail-request-update/{documentAction}', [DocumentController::class, 'showRequestUpdateDetail'])->name('document.showRequestUpdateDetail');
+    Route::get('/delete-document/{document}', [DocumentController::class, 'deleteDocument'])->name('document.deleteDocument');
+
 
     Route::post('/create', [DocumentController::class, 'createDocument'])->name('document.store');
     Route::post('/action-document/{document}', [DocumentController::class, 'actionDocument'])->name('document.actionDocument');
+    Route::post('/update-document/{model}', [DocumentController::class, 'update'])->name('document.updateDocument');
+    Route::post('/request-update-document/{model}', [DocumentController::class, 'requestUpdateForAgent'])->name('document.requestUpdateForAgent');
     Route::post('/confirm-request/{documentAction}', [DocumentController::class, 'confirmRequest'])->name('document.confirmRequest');
 });
 

@@ -68,12 +68,22 @@
                                                            href="{{ route('document.detail', $val->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i> Sửa
-                                                        </a>
-                                                        <a class="dropdown-item text-danger" href="#">
-                                                            <i class="fa fa-times"></i> Xóa
-                                                        </a>
+
+                                                        @if( auth()->user()->role_type === User::ROLE_ADMIN )
+                                                            <a class="dropdown-item"
+                                                               href="{{ route('document.update', $val->id) }}">
+                                                                <i class="fa fa-edit"></i> Sửa
+                                                            </a>
+                                                            <a class="dropdown-item text-danger"
+                                                               href="{{ route('document.deleteDocument', $val->id) }}">
+                                                                <i class="fa fa-times"></i> Xóa
+                                                            </a>
+                                                        @else
+                                                            <a class="dropdown-item"
+                                                               href="{{ route('document.show_request_update', $val->id) }}">
+                                                                <i class="fa fa-edit"></i> Yêu cầu chỉnh sửa
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>

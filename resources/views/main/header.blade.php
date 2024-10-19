@@ -47,8 +47,13 @@
                             Thêm mới
                             @break
                         @case('document.detail')
-                        @case('document.showRequestDetail')
+                        @case('document.showRequestPublicDetail')
+                        @case('document.showRequestUpdateDetail')
                             Chi tiết
+                            @break
+                        @case('document.update')
+                        @case('document.show_request_update')
+                            Sửa thông tin
                             @break
 
                     @endswitch
@@ -72,7 +77,10 @@
                                 @case('document.showListRequestForAdmin')
                                 @case('document.showPrivateDocument')
                                 @case('document.detail')
-                                @case('document.showRequestDetail')
+                                @case('document.showRequestPublicDetail')
+                                @case('document.showRequestUpdateDetail')
+                                @case('document.update')
+                                @case('document.show_request_update')
                                     Quản lý tài liệu
                                     @break
                                 @case('folder.index')
@@ -103,7 +111,8 @@
                                 @case('document.showListRequestForAdmin')
                                     Yêu cầu chờ phê duyệt
                                     @break
-                                @case('document.showRequestDetail')
+                                @case('document.showRequestUpdateDetail')
+                                @case('document.showRequestPublicDetail')
                                     Thông tin yêu cầu
                                     @break
                                 @case('document.detail')
@@ -111,6 +120,10 @@
                                     @break
                                 @case('document.create')
                                     Thêm mới tài liệu
+                                    @break
+                                @case('document.update')
+                                @case('document.show_request_update')
+                                    Sửa tài liệu
                                     @break
                                 @case('folder.index')
                                     Danh sách thư mục

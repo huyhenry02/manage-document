@@ -21,6 +21,7 @@ class DocumentAction extends Model
         'document_id',
         'action',
         'reason',
+        'json_data_update',
         'created_by_id',
         'confirmed_by_id',
         'user_type',

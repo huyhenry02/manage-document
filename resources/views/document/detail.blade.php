@@ -49,6 +49,26 @@
                             </tr>
                             <tr>
                                 <td style="padding: 5px !important;">
+                                    <p>Thời gian có hiệu lực từ</p>
+                                </td>
+                                <td style="padding: 5px !important;">
+                                    <p class="text-muted">
+                                        {{ $model->start_time ?? '' }}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px !important;">
+                                    <p>Thời gian có hiệu lực đến</p>
+                                </td>
+                                <td style="padding: 5px !important;">
+                                    <p class="text-muted">
+                                        {{ $model->end_time ?? '' }}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px !important;">
                                     <p>Người đăng</p>
                                 </td>
                                 <td style="padding: 5px !important;">
@@ -105,17 +125,6 @@
                                                 </p>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td style="padding: 5px !important;">
-                                                <p>Nội dung</p>
-                                            </td>
-                                            <td style="padding: 5px !important; max-width: 300px">
-                                                <p class="text-muted
-                                                            ">
-                                                    {{ $model->content ?? '' }}
-                                                </p>
-                                            </td>
-                                        </tr>
                                         <tr class="file-attachments">
                                             <td style="padding: 5px !important;">
                                                 <p>Tệp đính kèm</p>
@@ -142,13 +151,20 @@
                                         </tr>
                                         <tr>
                                             <td style="padding: 5px !important;">
+                                                <p>Nội dung</p>
+                                            </td>
+                                            <td style="padding: 5px !important; max-width: 300px">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                          name="content" disabled>{{ $model->content ?? '' }}</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px !important;">
                                                 <p>Ghi chú</p>
                                             </td>
                                             <td style="padding: 5px !important; max-width: 300px">
-                                                <p class="text-muted
-                                                            ">
-                                                    {{ $model->note ?? '' }}
-                                                </p>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                          name="content" disabled>{{ $model->note ?? '' }}</textarea>
                                             </td>
                                         </tr>
                                         </tbody>

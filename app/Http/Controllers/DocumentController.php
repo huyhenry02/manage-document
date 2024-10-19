@@ -40,6 +40,26 @@ class DocumentController extends Controller
 
     }
 
+    public function show_update(Document $model): View|Factory|Application
+    {
+        $folders = Folder::all()->toArray();
+        $folderTree = $this->buildFolderTree($folders);
+        return view('document.update', [
+            'folderTree' => $folderTree,
+            'model' => $model
+        ]);
+    }
+
+    public function show_request_update(Document $model): View|Factory|Application
+    {
+        $folders = Folder::all()->toArray();
+        $folderTree = $this->buildFolderTree($folders);
+        return view('document.request-update', [
+            'folderTree' => $folderTree,
+            'model' => $model
+        ]);
+    }
+
     public function show_detail(Document $model): View|Factory|Application
     {
         $comments = Comment::where('document_id', $model->id)
@@ -53,10 +73,20 @@ class DocumentController extends Controller
             ]);
     }
 
-    public function showRequestDetail(DocumentAction $documentAction): View|Factory|Application
+    public function showRequestPublicDetail(DocumentAction $documentAction): View|Factory|Application
     {
         $document = $documentAction->document;
-        return view('document.request.request-detail',
+        return view('document.request.request-public-detail',
+            [
+                'documentAction' => $documentAction,
+                'document' => $document
+            ]);
+    }
+
+    public function showRequestUpdateDetail(DocumentAction $documentAction): View|Factory|Application
+    {
+        $document = $documentAction->document;
+        return view('document.request.request-update-detail',
             [
                 'documentAction' => $documentAction,
                 'document' => $document
@@ -70,30 +100,6 @@ class DocumentController extends Controller
             [
                 'documents' => $documents
             ]);
-    }
-    private function buildFolderTree(array $folders, $parentId = null): array
-    {
-        $branch = [];
-
-        foreach ($folders as $folder) {
-            if ($folder['parent_id'] === $parentId) {
-                $children = $this->buildFolderTree($folders, $folder['id']);
-                if ($children) {
-                    $folder['subfolder'] = $children;
-                } else {
-                    $folder['subfolder'] = null;
-                }
-                $branch[] = $folder;
-            }
-        }
-
-        return $branch;
-    }
-
-    public function show_update(): View|Factory|Application
-    {
-        return view('document.update');
-
     }
 
     public function showListRequestForAdmin(): View|Factory|Application
@@ -113,6 +119,7 @@ class DocumentController extends Controller
                 'requests' => $requests
             ]);
     }
+
     public function createDocument(Request $request): JsonResponse|RedirectResponse
     {
         DB::beginTransaction();
@@ -139,23 +146,41 @@ class DocumentController extends Controller
         }
     }
 
-    private function handleUploadFile($request, $document): void
+    public function update(Document $model, Request $request): JsonResponse|RedirectResponse
     {
-        $file = $request->file('attachment_file');
-        $fileName = $document->code . '.' . $file->getClientOriginalExtension();
-        $filePath = $file->storePubliclyAs('files/document', $fileName);
-        $data = asset('storage/' . $filePath);
-        $attachment = new AttachmentFile();
-        $input = [
-            'document_id' => $document->id,
-            'file_path' => $data,
-            'file_name' => $fileName,
-            'file_size' => $file->getSize(),
-            'mime_type' => $file->getClientMimeType(),
-            'uploaded_by_id' => auth()->id()
-        ];
-        $attachment->fill($input);
-        $attachment->save();
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $input['updated_by_id'] = auth()->id();
+            if ($request->hasFile('attachment_file')) {
+                $model->attachmentFiles()->delete();
+                $this->handleUploadFile($request, $model);
+            }
+            $model->fill($input);
+            $model->save();
+            DB::commit();
+            return redirect()->route('document.index');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteDocument(Document $document): JsonResponse|RedirectResponse
+    {
+        try {
+            $document->attachmentFiles()->delete();
+            $document->comments()->delete();
+            $document->documentActions()->delete();
+            $document->delete();
+            return redirect()->route('document.index');
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function actionDocument(Document $document, Request $request): JsonResponse|RedirectResponse
@@ -167,6 +192,29 @@ class DocumentController extends Controller
             $input['user_type'] = auth()->user()->role_type;
             $input['document_id'] = $document->id;
             $documentAction = new DocumentAction();
+            $documentAction->fill($input);
+            $documentAction->save();
+            DB::commit();
+            return redirect()->route('document.index');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function requestUpdateForAgent(Document $model, Request $request): JsonResponse|RedirectResponse
+    {
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $documentAction = new DocumentAction();
+            $input['json_data_update'] = json_encode($input['data'], JSON_THROW_ON_ERROR);
+            $input['created_by_id'] = auth()->id();
+            $input['user_type'] = auth()->user()->role_type;
+            $input['document_id'] = $model->id;
+            $input['action'] = DocumentAction::ACTION_EDIT_DOCUMENT;
             $documentAction->fill($input);
             $documentAction->save();
             DB::commit();
@@ -208,5 +256,43 @@ class DocumentController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
+    }
+
+    private function buildFolderTree(array $folders, $parentId = null): array
+    {
+        $branch = [];
+
+        foreach ($folders as $folder) {
+            if ($folder['parent_id'] === $parentId) {
+                $children = $this->buildFolderTree($folders, $folder['id']);
+                if ($children) {
+                    $folder['subfolder'] = $children;
+                } else {
+                    $folder['subfolder'] = null;
+                }
+                $branch[] = $folder;
+            }
+        }
+
+        return $branch;
+    }
+
+    private function handleUploadFile($request, $document): void
+    {
+        $file = $request->file('attachment_file');
+        $fileName = $document->code . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storePubliclyAs('files/document', $fileName);
+        $data = asset('storage/' . $filePath);
+        $attachment = new AttachmentFile();
+        $input = [
+            'document_id' => $document->id,
+            'file_path' => $data,
+            'file_name' => $fileName,
+            'file_size' => $file->getSize(),
+            'mime_type' => $file->getClientMimeType(),
+            'uploaded_by_id' => auth()->id()
+        ];
+        $attachment->fill($input);
+        $attachment->save();
     }
 }

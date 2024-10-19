@@ -49,4 +49,9 @@ class Document extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function documentActions(): HasMany
+    {
+        return $this->hasMany(DocumentAction::class);
+    }
 }

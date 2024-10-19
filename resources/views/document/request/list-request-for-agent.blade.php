@@ -20,7 +20,7 @@
                                         <tr>
                                             <th class="text-center">STT</th>
                                             <th class="text-center">Hành động</th>
-                                            <th class="text-center">Nội dung</th>
+                                            <th class="text-center">Lý do</th>
                                             <th class="text-center">Trạng thái</th>
                                             <th class="text-center">Thời gian</th>
                                             <th class="text-center" style="width: 10%">Hành động</th>
@@ -52,10 +52,17 @@
                                                 @endswitch
                                                 <td class="text-center">{{ $request->created_at ?? '' }}</td>
                                                 <td class="text-center text-primary">
-                                                    <a class="dropdown-item"
-                                                       href="{{ route('document.showRequestDetail', $request->id) }}">
-                                                        <i class="fas fa-eye"></i> Xem
-                                                    </a>
+                                                    @if( $request->action === DocumentAction::ACTION_PUBLIC_DOCUMENT )
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('document.showRequestPublicDetail', $request->id) }}">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                    @else
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('document.showRequestUpdateDetail', $request->id) }}">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

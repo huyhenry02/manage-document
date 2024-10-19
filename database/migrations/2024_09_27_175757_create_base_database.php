@@ -13,8 +13,8 @@ return new class extends Migration
             $table->string('title', 255);
             $table->string('code', 255)->nullable();
             $table->text('content');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->date('start_time');
+            $table->date('end_time');
             $table->boolean('is_private')->default(false);
             $table->string('note', 255)->nullable();
             $table->unsignedBigInteger('folder_id');
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->enum('action', ['public_document', 'edit_document']);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('reason')->nullable();
+            $table->json('json_data_update');
             $table->unsignedBigInteger('created_by_id');
             $table->unsignedBigInteger('confirmed_by_id')->nullable();
             $table->enum('user_type', ['admin', 'agent']);
