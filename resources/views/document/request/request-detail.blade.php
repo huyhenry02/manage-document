@@ -1,4 +1,4 @@
-@php use App\Models\Document; @endphp
+@php use \App\Models\DocumentAction; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header">
@@ -8,9 +8,14 @@
             <div class="card">
                 <div class="card-header d-flex">
                     <h4 class="card-title text-center">Thông tin chính</h4>
-                    <button class="btn btn-secondary" id="public-document-btn">
-                        Công Khai tài liệu
-                    </button>
+                    @if( $documentAction->status === DocumentAction::STATUS_PENDING )
+                        <button class="btn btn-secondary" id="approved-document-btn">
+                            Xác nhận công khai
+                        </button>
+                        <button class="btn btn-danger" id="rejected-document-btn">
+                            Từ chối công khai
+                        </button>
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="main-information">
@@ -22,7 +27,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        {{ $model->code ?? '' }}
+                                        {{ $document->code ?? '' }}
                                     </p>
                                 </td>
                             </tr>
@@ -32,7 +37,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        {{ $model->title ?? '' }}
+                                        {{ $document->title ?? '' }}
                                     </p>
                                 </td>
                             </tr>
@@ -42,17 +47,27 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        {{ $model->created_at ?? '' }}
+                                        {{ $document->created_at ?? '' }}
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 5px !important;">
-                                    <p>Người đăng</p>
+                                    <p>Người yêu cầu</p>
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        {{ $model->createdBy->name ?? '' }}
+                                        {{ $documentAction->createdBy->name ?? '' }}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px !important;">
+                                    <p>Lý do</p>
+                                </td>
+                                <td style="padding: 5px !important;">
+                                    <p class="text-muted">
+                                        {{ $documentAction->reason ?? '' }}
                                     </p>
                                 </td>
                             </tr>
@@ -77,15 +92,6 @@
                                 </h4>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="line-comment-tab" data-bs-toggle="pill"
-                               href="#line-comment" role="tab" aria-controls="pills-comment"
-                               aria-selected="false">
-                                <h4 class="card-title text-center">
-                                    Bình luận
-                                </h4>
-                            </a>
-                        </li>
                     </ul>
                     <div class="tab-content mt-3 mb-3" id="line-tabContent">
                         <div class="tab-pane fade show active" id="line-home" role="tabpanel"
@@ -100,7 +106,7 @@
                                             </td>
                                             <td style="padding: 5px !important; vertical-align: middle; max-width: 300px">
                                                 <p class="text-muted">
-                                                    {{ $model->folder->name ?? '' }}
+                                                    {{ $document->folder->name ?? '' }}
                                                 </p>
                                             </td>
                                         </tr>
@@ -111,7 +117,7 @@
                                             <td style="padding: 5px !important; max-width: 300px">
                                                 <p class="text-muted
                                                             ">
-                                                    {{ $model->content ?? '' }}
+                                                    {{ $document->content ?? '' }}
                                                 </p>
                                             </td>
                                         </tr>
@@ -120,10 +126,10 @@
                                                 <p>Tệp đính kèm</p>
                                             </td>
                                             <td style="padding: 5px !important; max-width: 300px">
-                                                @if( !empty($model->attachmentFiles) && count($model->attachmentFiles) > 0 )
+                                                @if( !empty($document->attachmentFiles) && count($document->attachmentFiles) > 0 )
                                                     <table style="width: 100%">
                                                         <tbody>
-                                                        @foreach( $model->attachmentFiles as $attachment )
+                                                        @foreach( $document->attachmentFiles as $attachment )
                                                             <tr>
                                                                 <td>
                                                                     <a href="{{ $attachment->file_path }}" download>
@@ -139,6 +145,7 @@
 
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td style="padding: 5px !important;">
                                                 <p>Ghi chú</p>
@@ -146,7 +153,7 @@
                                             <td style="padding: 5px !important; max-width: 300px">
                                                 <p class="text-muted
                                                             ">
-                                                    {{ $model->note ?? '' }}
+                                                    {{ $document->note  ?? '' }}
                                                 </p>
                                             </td>
                                         </tr>
@@ -226,72 +233,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="line-comment" role="tabpanel" aria-labelledby="line-comment-tab">
-                            @if(!empty($comments) && count($model->comments) > 0)
-                                <div class="comments-list" id="comments-list">
-                                    @foreach( $comments as $comment )
-                                        <div class="comment">
-                                            <p>
-                                                <strong>{{ $comment->user?->name ?? 'Người dùng' }}</strong>: {{ $comment->content ?? '' }}
-                                                <span
-                                                    class="comment-time">{{ $comment->created_at->format('H:i d/m/Y') }}</span>
-                                                <!-- Hiển thị giờ -->
-                                            </p>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                            <div class="comment-input">
-                                <textarea id="comment-content" placeholder="Nhập bình luận của bạn..."
-                                          rows="3"></textarea>
-                                <button id="submit-comment" class="submit-comment">Gửi</button>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Popup Modal -->
-    <div class="modal fade" id="publicDocumentModal" tabindex="-1" role="dialog"
-         aria-labelledby="publicDocumentModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="publicDocumentModalLabel">Yêu cầu công khai tài liệu</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('document.actionDocument', $model->id) }}" method="post">
-                    @csrf
-                    <div class="modal-body">
-                        <input type="hidden" name="action" value="public_document">
-                        <div class="form-group">
-                            <label for="reason">Lý do công khai</label>
-                            <textarea class="form-control" id="reason" rows="3" name="reason"
-                                      placeholder="Nhập lý do công khai..."></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('modals.approved-request')
+    @include('modals.rejected-request')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#public-document-btn').on('click', function () {
-                $('#publicDocumentModal').modal('show');
+            $('#approved-document-btn').on('click', function () {
+                $('#approvedDocumentModal').modal('show');
+            });
+            $('#rejected-document-btn').on('click', function () {
+                $('#rejectedDocumentModal').modal('show');
             });
 
             $('#submit-comment').on('click', function () {
-                const documentId = {{ $model->id }};
+                const documentId = {{ $document->id }};
                 const content = $('#comment-content').val();
 
                 $.ajax({
@@ -388,21 +350,22 @@
             color: #999;
         }
 
-        #public-document-btn {
+        #approved-document-btn {
             margin-left: auto;
+            margin-right: 5px;
         }
 
-        #publicDocumentModal .modal-header {
+        #approvedDocumentModal .modal-header {
             background-color: #2a2f5b;
             color: #fff;
         }
 
-        #publicDocumentModal .modal-footer {
+        #approvedDocumentModal .modal-footer {
             display: flex;
             justify-content: space-between;
         }
 
-        #publicDocumentModal .form-control {
+        #approvedDocumentModal .form-control {
             font-size: 1rem;
             padding: 10px;
         }

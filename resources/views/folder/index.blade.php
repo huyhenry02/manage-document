@@ -11,10 +11,10 @@
                         <button class="btn btn-outline-info me-2" id="moveButton"><i
                                 class="fas fa-th-large"></i> Di chuyển bài viết
                         </button>
-{{--                        <button class="btn btn-outline-danger me-2" id="deleteButton"><i class="fas fa-times"></i> Xóa--}}
-{{--                            bài viết khỏi thư--}}
-{{--                            mục--}}
-{{--                        </button>--}}
+                        {{--                        <button class="btn btn-outline-danger me-2" id="deleteButton"><i class="fas fa-times"></i> Xóa--}}
+                        {{--                            bài viết khỏi thư--}}
+                        {{--                            mục--}}
+                        {{--                        </button>--}}
                     </div>
                     <div class="input-search-category">
                         <label>
@@ -49,6 +49,7 @@
         document.getElementById('parentFolderId').value = parentId;
         $('#createChildrenCategory').modal('show');
     }
+
     function toggleSubfolder(element) {
         var subfolder = element.nextElementSibling;
         var folderId = element.getAttribute('data-folder-id');
@@ -64,13 +65,14 @@
         } else {
             console.warn("Subfolder element not found for:", element);
         }
+
         function setupCheckboxes() {
-            $('.document-item input[type="checkbox"]').on('change', function() {
+            $('.document-item input[type="checkbox"]').on('change', function () {
                 const anyChecked = $('.document-item input[type="checkbox"]:checked').length > 0;
                 $('#moveButton').prop('disabled', !anyChecked);
             });
 
-            $('#selectAllCheckbox').on('change', function() {
+            $('#selectAllCheckbox').on('change', function () {
                 const isChecked = $(this).is(':checked');
                 $('.document-item input[type="checkbox"]').prop('checked', isChecked).change();
             });
@@ -80,23 +82,24 @@
             url: '{{ route('folder.documents', ['folder_id' => ':folder_id']) }}'.replace(':folder_id', folderId),
             method: 'GET',
             data: {folder_id: folderId},
-            success: function(data) {
+            success: function (data) {
                 $('.list-document-of-category').html(data);
                 setupCheckboxes();
             },
-            error: function() {
+            error: function () {
                 console.error("Failed to load documents.");
             }
         });
     }
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         function setupCheckboxes() {
-            $('.document-item input[type="checkbox"]').on('change', function() {
+            $('.document-item input[type="checkbox"]').on('change', function () {
                 const anyChecked = $('.document-item input[type="checkbox"]:checked').length > 0;
                 $('#moveButton').prop('disabled', !anyChecked);
             });
 
-            $('#selectAllCheckbox').on('change', function() {
+            $('#selectAllCheckbox').on('change', function () {
                 const isChecked = $(this).is(':checked');
                 $('.document-item input[type="checkbox"]').prop('checked', isChecked).change();
             });
@@ -104,12 +107,12 @@
 
         setupCheckboxes();
 
-        $('#moveButton').on('click', function() {
+        $('#moveButton').on('click', function () {
             $('#moveDocumentsModal').modal('show');
         });
 
-        $('#confirmMoveButton').on('click', function() {
-            const selectedDocuments = $('.document-item input[type="checkbox"]:checked').map(function() {
+        $('#confirmMoveButton').on('click', function () {
+            const selectedDocuments = $('.document-item input[type="checkbox"]:checked').map(function () {
                 return $(this).val();
             }).get();
             const destinationFolderId = $('input[name="destination_folder"]:checked').val();
@@ -123,11 +126,11 @@
                         folder_id: destinationFolderId,
                         _token: '{{ csrf_token() }}'
                     },
-                    success: function(response) {
+                    success: function (response) {
                         alert(response.message);
                         $('#moveDocumentsModal').modal('hide');
                     },
-                    error: function() {
+                    error: function () {
                         alert('Đã có lỗi xảy ra.');
                     }
                 });

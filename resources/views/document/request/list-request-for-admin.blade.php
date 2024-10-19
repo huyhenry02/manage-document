@@ -1,24 +1,7 @@
-@php use App\Models\User; @endphp
+@php use App\Models\DocumentAction; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header d-flex align-items-center">
-        <div class="input-search-document position-relative">
-            <label>
-                <input
-                    type="text"
-                    placeholder="Tìm kiếm theo tiêu đề hoặc thư mục tài liệu ..."
-                    class="form-control search-input"
-                />
-            </label>
-        </div>
-
-        <a
-            class="btn btn-primary btn-round ms-auto"
-            href="{{ route('document.create') }}"
-        >
-            <i class="fa fa-plus"></i>
-            Thêm mới
-        </a>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -34,28 +17,41 @@
                                 >
                                     <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            STT
-                                        </th>
-                                        <th class="text-center">Mã tài liệu</th>
-                                        <th class="text-center">Tiêu đề</th>
-                                        <th class="text-center">Số bình luận</th>
-                                        <th class="text-center">Ngày đăng</th>
-                                        <th class="text-center">Người đăng</th>
+                                        <th class="text-center">STT</th>
+                                        <th class="text-center">Hành động</th>
+                                        <th class="text-center">Nội dung</th>
+                                        <th class="text-center">Trạng thái</th>
+                                        <th class="text-center">Thời gian</th>
+                                        <th class="text-center">Người gửi yêu cầu</th>
                                         <th class="text-center" style="width: 10%">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach( $documents as $key => $val)
+                                    @foreach( $requests as $key => $request )
                                         <tr>
-                                            <td class="text-center" width="5%">
-                                                {{ $key + 1 }}
-                                            </td>
-                                            <td class="text-center">{{ $val->code ?? '' }}</td>
-                                            <td class="text-center">{{ $val->title ?? '' }}</td>
-                                            <td class="text-center">{{ $val->comments()->count() ?? '' }}</td>
-                                            <td class="text-center">{{ $val->created_at ?? '' }}</td>
-                                            <td class="text-center">{{ $val->createdBy?->name ?? '' }}</td>
+                                            <td class="text-center">{{ $key + 1 }}</td>
+                                            @switch( $request->action )
+                                                @case(DocumentAction::ACTION_PUBLIC_DOCUMENT)
+                                                    <td class="text-center">Công khai tài liệu</td>
+                                                    @break
+                                                @case(DocumentAction::ACTION_EDIT_DOCUMENT)
+                                                    <td class="text-center">Yêu cầu chỉnh sửa tài liệu</td>
+                                                    @break
+                                            @endswitch
+                                            <td class="text-center">{{ $request->reason ?? '' }}</td>
+                                            @switch( $request->status )
+                                                @case(DocumentAction::STATUS_PENDING)
+                                                    <td class="text-center text-primary">Chờ xác nhận</td>
+                                                    @break
+                                                @case( DocumentAction::STATUS_APPROVED )
+                                                    <td class="text-center text-success">Đã xác nhận</td>
+                                                    @break
+                                                @case( DocumentAction::STATUS_REJECTED )
+                                                    <td class="text-center text-danger">Từ chối</td>
+                                                    @break
+                                            @endswitch
+                                            <td class="text-center">{{ $request->created_at ?? '' }}</td>
+                                            <td class="text-center">{{ $request->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
                                                 <div class="dropdown action-dropdown">
                                                     <button class="btn btn-link dropdown-toggle" type="button"
@@ -65,14 +61,11 @@
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
                                                         <a class="dropdown-item"
-                                                           href="{{ route('document.detail', $val->id) }}">
+                                                           href="{{ route('document.showRequestDetail', $request->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
                                                         <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i> Sửa
-                                                        </a>
-                                                        <a class="dropdown-item text-danger" href="#">
-                                                            <i class="fa fa-times"></i> Xóa
+                                                            <i class="fa fa-edit"></i> Xác nhận
                                                         </a>
                                                     </div>
                                                 </div>

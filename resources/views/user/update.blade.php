@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="card-action">
-                            <button type="submit" class="btn btn-success"> Lưu </button>
+                            <button type="submit" class="btn btn-success"> Lưu</button>
                             <button class="btn btn-danger">Hủy</button>
                         </div>
                     </form>
@@ -51,7 +51,7 @@
     <!-- Include Select2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#folderTree').select2({
                 placeholder: "Chọn thư mục",
                 allowClear: true,

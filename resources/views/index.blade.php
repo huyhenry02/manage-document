@@ -9,7 +9,8 @@
         name="viewport"
     />
     <!-- Place the first <script> tag in your HTML's <head> -->
-    <script src="https://cdn.tiny.cloud/1/eggryg0q6wnpxzmvxbb3xxbywaki58ri9bcabtatpbsa4onx/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/eggryg0q6wnpxzmvxbb3xxbywaki58ri9bcabtatpbsa4onx/tinymce/7/tinymce.min.js"
+            referrerpolicy="origin"></script>
 
     <link
         rel="icon"
@@ -18,7 +19,7 @@
     />
 
     <!-- Fonts and icons --><!-- Include Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
     <script src="/assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({

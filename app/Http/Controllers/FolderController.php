@@ -63,7 +63,9 @@ class FolderController extends Controller
 
     public function getDocumentsOfFolder($folder_id): View|Factory|Application
     {
-        $documents = Document::where('folder_id', $folder_id)->get();
+        $documents = Document::where('folder_id', $folder_id)
+            ->where('is_private', 0)
+            ->get();
         $folder = Folder::find($folder_id);
         return view('partials.documents-of-folder', [
             'documents' => $documents,

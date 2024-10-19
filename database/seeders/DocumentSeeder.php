@@ -24,8 +24,6 @@ class DocumentSeeder extends Seeder
                 'content' => $item->content,
                 'start_time' => $item->start_time,
                 'end_time' => $item->end_time,
-                'is_featured' => $item->is_featured,
-                'status' => $item->status,
                 'note' => $item->note,
                 'folder_id' => $item->folder_id,
                 'created_by_id' => $item->created_by_id,

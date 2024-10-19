@@ -12,10 +12,6 @@ class Document extends Model
     use HasFactory;
 
     protected $table = 'documents';
-    public const STATUS_DRAFT = 'draft';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_REJECTED = 'rejected';
 
     protected $fillable = [
         'title',
@@ -23,8 +19,7 @@ class Document extends Model
         'code',
         'start_time',
         'end_time',
-        'is_featured',
-        'status',
+        'is_private',
         'note',
         'folder_id',
         'created_by_id',

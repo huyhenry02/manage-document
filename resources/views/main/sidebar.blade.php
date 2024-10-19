@@ -46,21 +46,31 @@
                                     <span class="sub-item">Danh sách tài liệu</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Tài liêu của tôi</span>
-                                </a>
-                            </li>
+                            @if( auth()->user()->role_type === User::ROLE_AGENT)
+                                <li>
+                                    <a href="{{ route('document.showPrivateDocument') }}">
+                                        <span class="sub-item">Tài liêu của tôi</span>
+                                    </a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{ route('folder.index', 1) }}">
                                     <span class="sub-item">Thư mục tài liệu</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Yêu cầu phê duyệt</span>
-                                </a>
-                            </li>
+                            @if( auth()->user()->role_type === User::ROLE_AGENT)
+                                <li>
+                                    <a href="{{ route('document.showListRequestForAgent') }}">
+                                        <span class="sub-item">Yêu cầu của bạn</span>
+                                    </a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{route('document.showListRequestForAdmin')}}">
+                                        <span class="sub-item">Yêu cầu chờ phê duyệt</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </li>

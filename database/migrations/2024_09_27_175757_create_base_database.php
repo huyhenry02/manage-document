@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -15,8 +15,7 @@ return new class extends Migration
             $table->text('content');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->boolean('is_featured')->default(false);
-            $table->enum('status', ['draft', 'pending', 'active', 'rejected']);
+            $table->boolean('is_private')->default(false);
             $table->string('note', 255)->nullable();
             $table->unsignedBigInteger('folder_id');
             $table->unsignedBigInteger('created_by_id');
@@ -27,9 +26,11 @@ return new class extends Migration
         Schema::create('document_actions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_id');
-            $table->enum('action', ['public', 'approved', 'rejected']);
+            $table->enum('action', ['public_document', 'edit_document']);
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('reason')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('created_by_id');
+            $table->unsignedBigInteger('confirmed_by_id')->nullable();
             $table->enum('user_type', ['admin', 'agent']);
             $table->timestamps();
         });
@@ -77,7 +78,8 @@ return new class extends Migration
 
         Schema::table('document_actions', function (Blueprint $table) {
             $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('confirmed_by_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         Schema::table('comments', function (Blueprint $table) {
@@ -100,7 +102,8 @@ return new class extends Migration
 
         Schema::table('document_actions', function (Blueprint $table) {
             $table->dropForeign(['document_id']);
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['created_by_id']);
+            $table->dropForeign(['confirmed_by_id']);
         });
 
         Schema::table('comments', function (Blueprint $table) {

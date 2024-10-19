@@ -36,18 +36,18 @@
                 <h3 class="fw-bold mb-3">
                     @switch(Route::currentRouteName())
                         @case('document.index')
+                        @case('folder.index')
+                        @case('user.index')
+                        @case('document.showListRequestForAgent')
+                        @case('document.showListRequestForAdmin')
+                        @case('document.showPrivateDocument')
                             Danh Sách
                             @break
                         @case('document.create')
                             Thêm mới
                             @break
-                        @case('folder.index')
-                            Danh Sách
-                            @break
-                        @case('user.index')
-                            Danh Sách
-                            @break
                         @case('document.detail')
+                        @case('document.showRequestDetail')
                             Chi tiết
                             @break
 
@@ -67,12 +67,12 @@
                         <a href="#">
                             @switch(Route::currentRouteName())
                                 @case('document.index')
-                                    Quản lý tài liệu
-                                    @break
                                 @case('document.create')
-                                    Quản lý tài liệu
-                                    @break
+                                @case('document.showListRequestForAgent')
+                                @case('document.showListRequestForAdmin')
+                                @case('document.showPrivateDocument')
                                 @case('document.detail')
+                                @case('document.showRequestDetail')
                                     Quản lý tài liệu
                                     @break
                                 @case('folder.index')
@@ -94,6 +94,18 @@
                                 @case('document.index')
                                     Danh Sách tài liệu
                                     @break
+                                @case('document.showPrivateDocument')
+                                    Tài liệu của tôi
+                                    @break
+                                @case('document.showListRequestForAgent')
+                                    Yêu cầu của bạn
+                                    @break
+                                @case('document.showListRequestForAdmin')
+                                    Yêu cầu chờ phê duyệt
+                                    @break
+                                @case('document.showRequestDetail')
+                                    Thông tin yêu cầu
+                                    @break
                                 @case('document.detail')
                                     Thông tin tài liệu
                                     @break
@@ -106,7 +118,6 @@
                                 @case('user.index')
                                     Danh sách người dùng
                                     @break
-
                             @endswitch
                         </a>
                     </li>

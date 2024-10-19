@@ -1,3 +1,4 @@
+@php use App\Models\User; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header d-flex align-items-center">
@@ -5,7 +6,7 @@
             <label>
                 <input
                     type="text"
-                    placeholder="Tìm kiếm người dùng ..."
+                    placeholder="Tìm kiếm theo tiêu đề hoặc thư mục tài liệu ..."
                     class="form-control search-input"
                 />
             </label>
@@ -13,10 +14,10 @@
 
         <a
             class="btn btn-primary btn-round ms-auto"
-            href="{{ route('user.create') }}"
+            href="{{ route('document.create') }}"
         >
             <i class="fa fa-plus"></i>
-            Thêm mới agent
+            Thêm mới
         </a>
     </div>
     <div class="row">
@@ -36,19 +37,32 @@
                                         <th class="text-center" style="width: 3%">
                                             STT
                                         </th>
-                                        <th class="text-center">Tên Agent</th>
-                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Mã tài liệu</th>
+                                        <th class="text-center">Tiêu đề</th>
+                                        <th class="text-center">Ngày đăng</th>
+                                        <th class="text-center">Trạng thái</th>
                                         <th class="text-center" style="width: 10%">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach( $agents as $key => $user )
+                                    @foreach( $documents as $key => $document)
                                         <tr>
                                             <td class="text-center" width="5%">
-                                               {{ $key + 1 }}
+                                                {{ $key + 1 }}
                                             </td>
-                                            <td class="text-center"> {{ $user->name ?? '' }} </td>
-                                            <td class="text-center"> {{ $user->email ?? '' }} </td>
+                                            <td class="text-center">{{ $document->code ?? '' }}</td>
+                                            <td class="text-center">{{ $document->title ?? '' }}</td>
+                                            <td class="text-center">{{ $document->created_at ?? '' }}</td>
+                                            <td class="text-center">
+                                                @switch( $document->is_private )
+                                                    @case(0)
+                                                        <span class="badge bg-success">Công khai</span>
+                                                        @break
+                                                    @case(1)
+                                                        <span class="badge bg-warning">Riêng tư</span>
+                                                        @break
+                                                @endswitch
+                                            </td>
                                             <td class="text-center">
                                                 <div class="dropdown action-dropdown">
                                                     <button class="btn btn-link dropdown-toggle" type="button"
@@ -57,10 +71,14 @@
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item" href="{{ route('user.update', $user->id) }}">
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('document.detail', $document->id) }}">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
                                                             <i class="fa fa-edit"></i> Sửa
                                                         </a>
-                                                        <a class="dropdown-item text-danger" href="{{ route('user.delete', $user->id) }}">
+                                                        <a class="dropdown-item text-danger" href="#">
                                                             <i class="fa fa-times"></i> Xóa
                                                         </a>
                                                     </div>
@@ -141,3 +159,4 @@
 
     </style>
 @endsection
+

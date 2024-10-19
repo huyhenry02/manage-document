@@ -23,11 +23,17 @@ Route::group([
     'middleware' => 'auth'
 ], static function () {
     Route::get('/', [DocumentController::class, 'show_index'])->name('document.index');
-    Route::get('/create', [DocumentController::class, 'show_create'])->name('document.create');
+    Route::get('/show-private-document', [DocumentController::class, 'showPrivateDocument'])->name('document.showPrivateDocument');
+    Route::get('/show-list-request-for-agent', [DocumentController::class, 'showListRequestForAgent'])->name('document.showListRequestForAgent');
+    Route::get('/show-list-request-for-admin', [DocumentController::class, 'showListRequestForAdmin'])->name('document.showListRequestForAdmin');
+    Route::get('/creat', [DocumentController::class, 'show_create'])->name('document.create');
     Route::get('/update', [DocumentController::class, 'show_update'])->name('document.update');
     Route::get('/detail/{model}', [DocumentController::class, 'show_detail'])->name('document.detail');
+    Route::get('/detail-request/{documentAction}', [DocumentController::class, 'showRequestDetail'])->name('document.showRequestDetail');
 
     Route::post('/create', [DocumentController::class, 'createDocument'])->name('document.store');
+    Route::post('/action-document/{document}', [DocumentController::class, 'actionDocument'])->name('document.actionDocument');
+    Route::post('/confirm-request/{documentAction}', [DocumentController::class, 'confirmRequest'])->name('document.confirmRequest');
 });
 
 Route::group([
