@@ -52,23 +52,11 @@
                                             @endswitch
                                             <td class="text-center">{{ $request->created_at ?? '' }}</td>
                                             <td class="text-center">{{ $request->createdBy?->name ?? '' }}</td>
-                                            <td class="text-center">
-                                                <div class="dropdown action-dropdown">
-                                                    <button class="btn btn-link dropdown-toggle" type="button"
-                                                            id="actionDropdown" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fa fa-ellipsis-v"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                                                        <a class="dropdown-item"
-                                                           href="{{ route('document.showRequestDetail', $request->id) }}">
-                                                            <i class="fas fa-eye"></i> Xem
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-edit"></i> Xác nhận
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                            <td class="text-center text-primary">
+                                                <a class="dropdown-item"
+                                                   href="{{ route('document.showRequestDetail', $request->id) }}">
+                                                    <i class="fas fa-eye"></i> Xem
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

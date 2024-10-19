@@ -1,4 +1,4 @@
-@php use \App\Models\DocumentAction; @endphp
+@php use App\Models\User;use \App\Models\DocumentAction; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header">
@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header d-flex">
                     <h4 class="card-title text-center">Thông tin chính</h4>
-                    @if( $documentAction->status === DocumentAction::STATUS_PENDING )
+                    @if( $documentAction->status === DocumentAction::STATUS_PENDING && auth()->user()->role_type === User::ROLE_ADMIN )
                         <button class="btn btn-secondary" id="approved-document-btn">
                             Xác nhận công khai
                         </button>

@@ -1,4 +1,3 @@
-@php use App\Models\Document; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header">
@@ -8,9 +7,11 @@
             <div class="card">
                 <div class="card-header d-flex">
                     <h4 class="card-title text-center">Thông tin chính</h4>
-                    <button class="btn btn-secondary" id="public-document-btn">
-                        Công Khai tài liệu
-                    </button>
+                    @if( $model->is_private === 1 )
+                        <button class="btn btn-secondary" id="public-document-btn">
+                            Công Khai tài liệu
+                        </button>
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="main-information">
