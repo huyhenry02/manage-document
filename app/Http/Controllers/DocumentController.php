@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use JsonException;
 use App\Models\Folder;
 use App\Models\Comment;
 use App\Models\Document;
@@ -83,13 +84,18 @@ class DocumentController extends Controller
             ]);
     }
 
+    /**
+     * @throws JsonException
+     */
     public function showRequestUpdateDetail(DocumentAction $documentAction): View|Factory|Application
     {
         $document = $documentAction->document;
+        $dataUpdate = json_decode($documentAction->json_data_update, true, 512, JSON_THROW_ON_ERROR);
         return view('document.request.request-update-detail',
             [
                 'documentAction' => $documentAction,
-                'document' => $document
+                'document' => $document,
+                'dataUpdate' => $dataUpdate
             ]);
     }
 
@@ -241,6 +247,10 @@ class DocumentController extends Controller
                         break;
                     case DocumentAction::ACTION_EDIT_DOCUMENT:
                         $document = Document::find($documentAction->document_id);
+                        $dataUpdate = json_decode($documentAction->json_data_update, true, 512, JSON_THROW_ON_ERROR);
+                        foreach ($dataUpdate as $key => $value) {
+                            $document->$key = $value;
+                        }
                         $document->save();
                         break;
                 }

@@ -26,18 +26,6 @@
                                     />
                                 </div>
                                 <div class="form-group">
-                                    <label for="folderTree">Thư mục bài viết</label>
-                                    <select class="form-select" id="folderTree" aria-label="Default select example"
-                                            name="data[folder_id]">
-                                        <option selected
-                                                value="{{ $model->folder_id }}"> {{ $model->folder?->name ?? '' }}</option>
-                                        @foreach ($folderTree as $folder)
-                                            @include('partials.folder-option', ['folder' => $folder, 'level' => 0])
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Lý do yêu cầu chỉnh sửa</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
                                               name="reason"></textarea>
@@ -64,28 +52,6 @@
                                                value="{{ $model->end_time }}"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="file">File đính kèm</label>
-                                    <input type="file" class="form-control" id="file" name="data[attachment_file]"/>
-                                    <div id="filePreview" class="mt-3">
-                                        @if( !empty($model->attachmentFiles) && count($model->attachmentFiles) > 0 )
-                                            <table style="width: 100%">
-                                                <tbody>
-                                                @foreach( $model->attachmentFiles as $attachment )
-                                                    <tr>
-                                                        <td>
-                                                            <a href="{{ $attachment->file_path }}" download>
-                                                                <i class="fas fa-file-pdf"></i>
-                                                                <span>{{ $attachment->file_name }}</span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
-                                            </table>
-                                        @endif
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="card-action">
@@ -109,11 +75,6 @@
         });
     </script>
     <style>
-        #filePreview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
         .form-select option {
             padding-left: 20px;
         }

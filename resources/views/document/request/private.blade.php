@@ -155,8 +155,6 @@
         .action-dropdown .dropdown-item.text-danger:hover {
             color: #c82333;
         }
-
-
     </style>
 @endsection
 
