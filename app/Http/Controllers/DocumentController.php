@@ -312,7 +312,7 @@ class DocumentController extends Controller
 
     private function handleUploadFile($key, $file, $document): void
     {
-        $fileName = $document->code . '.' . '(' . $key + 1 . ')' . $file->getClientOriginalExtension();
+        $fileName = $document->code . '(' . $key + 1 . ')' . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storePubliclyAs('files/document', $fileName);
         $data = asset('storage/' . $filePath);
         $attachment = new AttachmentFile();
