@@ -39,7 +39,6 @@ return new class extends Migration
         Schema::create('folders', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->string('code', 255);
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('created_by_id');
             $table->unsignedBigInteger('updated_by_id')->nullable();

@@ -26,6 +26,8 @@ Route::group([
     Route::get('/show-private-document', [DocumentController::class, 'showPrivateDocument'])->name('document.showPrivateDocument');
     Route::get('/show-list-request-for-agent', [DocumentController::class, 'showListRequestForAgent'])->name('document.showListRequestForAgent');
     Route::get('/show-list-request-for-admin', [DocumentController::class, 'showListRequestForAdmin'])->name('document.showListRequestForAdmin');
+    Route::get('/pdf/preview/{name}', [DocumentController::class, 'previewPdf'])->name('pdf.preview');
+
     Route::get('/creat', [DocumentController::class, 'show_create'])->name('document.create');
     Route::get('/update/{model}', [DocumentController::class, 'show_update'])->name('document.update');
     Route::get('/request-update/{model}', [DocumentController::class, 'show_request_update'])->name('document.show_request_update');
@@ -70,6 +72,6 @@ Route::group([
     Route::post('/', [FolderController::class, 'store'])->name('folder.store');
     Route::post('/documents/move', [FolderController::class, 'moveDocuments'])->name('folder.moveDocuments');
     Route::post('/documents/delete', [FolderController::class, 'deleteDocumentsOfFolder'])->name('folder.deleteDocumentsOfFolder');
-    Route::post('/delete/{model}', [FolderController::class, 'deleteFolder'])->name('folder.delete');
+    Route::delete('/folder/{folder_id}', [FolderController::class, 'delete'])->name('folder.delete');
 });
 

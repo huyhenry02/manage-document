@@ -11,16 +11,6 @@
                         <button class="btn btn-outline-info me-2" id="moveButton"><i
                                 class="fas fa-th-large"></i> Di chuyển bài viết
                         </button>
-                        {{--                        <button class="btn btn-outline-danger me-2" id="deleteButton"><i class="fas fa-times"></i> Xóa--}}
-                        {{--                            bài viết khỏi thư--}}
-                        {{--                            mục--}}
-                        {{--                        </button>--}}
-                    </div>
-                    <div class="input-search-category">
-                        <label>
-                            <input type="text" placeholder="Tìm kiếm theo tiêu đề hoặc thư mục tài liệu  ..."
-                                   class="form-control"/>
-                        </label>
                     </div>
                 </div>
                 <div class="card-body d-flex">
@@ -139,6 +129,33 @@
             }
         });
     });
+    function confirmDeleteFolder(event, folderId) {
+        event.preventDefault();
+        if (confirm('Bạn có chắc chắn muốn xóa thư mục này, và đảm bảo thư mục này rỗng?')) {
+            deleteFolder(folderId);
+        }
+    }
+
+    function deleteFolder(folderId) {
+        $.ajax({
+            url: '{{ route('folder.delete', ['folder_id' => ':folder_id']) }}'.replace(':folder_id', folderId),
+            method: 'DELETE',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function (response) {
+                if (response.success) {
+                    alert('Xóa thành công.');
+                    location.reload();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function () {
+                alert('Xóa không thành công.');
+            }
+        });
+    }
 </script>
 <style>
     .card-body {
@@ -168,14 +185,18 @@
         font-size: 18px;
         font-weight: 500;
         cursor: pointer;
-        display: block;
         position: relative;
         padding: 6px 10px;
         color: #007bff;
+        display: flex;
+        align-items: center;
     }
 
     .folder i {
         margin-right: 8px;
+    }
+    .folder span {
+        flex-grow: 1;
     }
 
     .folder:hover {
@@ -319,5 +340,15 @@
     .form-control:focus {
         border-color: #007bff;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+    .btn-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .btn-link:hover {
+        color: #0056b3;
+        text-decoration: underline;
     }
 </style>

@@ -78,8 +78,8 @@
                         <form class="js-validate" action="{{ route('auth.post_login') }}" method="post">
                             @csrf
                             <div class="js-form-message form-group">
-                                <label class="input-label" for="signinSrEmail">Email của bạn</label>
-                                <input type="email" class="form-control form-control-lg" name="email" id="signinSrEmail" tabindex="1">
+                                <label class="input-label" for="signinSrEmail">Tên đăng nhập</label>
+                                <input type="text" class="form-control form-control-lg" name="user_name" id="signinSrEmail" tabindex="1">
                             </div>
                             <!-- End Form Group -->
 

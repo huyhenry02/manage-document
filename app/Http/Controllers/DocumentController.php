@@ -8,6 +8,7 @@ use App\Models\Folder;
 use App\Models\Comment;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\AttachmentFile;
 use App\Models\DocumentAction;
 use Illuminate\Http\JsonResponse;
@@ -16,6 +17,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class DocumentController extends Controller
 {
@@ -124,6 +127,20 @@ class DocumentController extends Controller
             [
                 'requests' => $requests
             ]);
+    }
+
+    public function previewPdf($name): Application|Response|RedirectResponse|ResponseFactory
+    {
+        $filePath = "files/document/{$name}";
+        if (Storage::exists($filePath)) {
+            $fileContent = Storage::get($filePath);
+
+            return response($fileContent)
+                ->header('Content-Type', 'application/pdf')
+                ->header('Content-Disposition', 'inline; filename="preview.pdf"');
+        }
+
+        return redirect()->back();
     }
 
     public function createDocument(Request $request): JsonResponse|RedirectResponse

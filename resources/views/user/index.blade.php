@@ -37,7 +37,7 @@
                                             STT
                                         </th>
                                         <th class="text-center">Tên Agent</th>
-                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Tên đăng nhập</th>
                                         <th class="text-center" style="width: 10%">Hành động</th>
                                     </tr>
                                     </thead>
@@ -48,7 +48,7 @@
                                                {{ $key + 1 }}
                                             </td>
                                             <td class="text-center"> {{ $user->name ?? '' }} </td>
-                                            <td class="text-center"> {{ $user->email ?? '' }} </td>
+                                            <td class="text-center"> {{ $user->user_name ?? '' }} </td>
                                             <td class="text-center">
                                                 <div class="dropdown action-dropdown">
                                                     <button class="btn btn-link dropdown-toggle" type="button"

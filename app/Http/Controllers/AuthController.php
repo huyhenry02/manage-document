@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function postLogin(Request $request): ?RedirectResponse
     {
         try {
-            $credentials = $request->only('email', 'password');
+            $credentials = $request->only('user_name', 'password');
             if (auth()->attempt($credentials)) {
                 return redirect()->route('document.index');
             }

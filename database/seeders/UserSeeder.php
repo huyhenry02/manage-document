@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => $item->name,
                 'role_type' => $item->role_type,
-                'email' => $item->email,
+                'user_name' => $item->user_name,
                 'password' => bcrypt($item->password),
                 'email_verified_at' => now(),
                 'created_at' => now(),

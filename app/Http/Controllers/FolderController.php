@@ -114,13 +114,21 @@ class FolderController extends Controller
         return response()->json(['message' => 'No documents selected'], 400);
     }
 
-    public function deleteFolder(Folder $model): JsonResponse
+    public function delete($folder_id): JsonResponse
     {
-        if ($model->documents()->count() > 0) {
-            return response()->json(['message' => 'Thư mục này vẫn đang chưa tài liêu. Hãy xóa nó trước hoặc di chuyển sang thư mục khác'], 400);
+        $folder = Folder::with('children.documents', 'documents')->find($folder_id);
+
+        if (!$folder) {
+            return response()->json(['success' => false, 'message' => 'Folder not found.']);
         }
-        $model->delete();
-        $model->children()->delete();
-        return response()->json(['message' => 'Deleted successfully']);
+
+        if ($folder->documents->isNotEmpty() || $folder->children->flatMap->documents->isNotEmpty()) {
+            return response()->json(['success' => false, 'message' => 'Thư mục vẫn còn tài liệu bên trong, vui lòng di chuyển tài liệu sang thư mục khác.']);
+        }
+
+        $folder->children()->delete();
+        $folder->delete();
+
+        return response()->json(['success' => true, 'message' => 'Xóa thành công.']);
     }
 }

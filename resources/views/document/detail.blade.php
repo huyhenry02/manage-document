@@ -136,7 +136,7 @@
                                                         @foreach( $model->attachmentFiles as $attachment )
                                                             <tr>
                                                                 <td>
-                                                                    <a href="{{ $attachment->file_path }}" download>
+                                                                    <a href="{{ route('pdf.preview', $attachment->file_name) }}" target="_blank">
                                                                         <i class="fas fa-file-pdf"></i>
                                                                         <span>{{ $attachment->file_name }}</span>
                                                                     </a>

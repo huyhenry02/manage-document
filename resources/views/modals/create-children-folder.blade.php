@@ -21,11 +21,6 @@
                         <input type="text" class="form-control" id="folderName" placeholder="Nhập tên thư mục"
                                name="name">
                     </div>
-                    <div class="form-group">
-                        <label for="folderName">Mã thư mục</label>
-                        <input type="text" class="form-control" id="folderName"
-                               name="code">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>

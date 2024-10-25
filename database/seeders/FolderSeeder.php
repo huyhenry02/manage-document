@@ -20,7 +20,6 @@ class FolderSeeder extends Seeder
             Folder::create([
                 'id' => $item->id,
                 'name' => $item->name,
-                'code' => $item->code,
                 'parent_id' => $item->parent_id,
                 'created_by_id' => $item->created_by_id,
                 'created_at' => now(),
