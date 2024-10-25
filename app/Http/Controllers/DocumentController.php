@@ -157,8 +157,8 @@ class DocumentController extends Controller
             $document->save();
 
             if ($request->hasFile('attachment_files')) {
-                foreach ($request->file('attachment_files') as $file) {
-                    $this->handleUploadFile($file, $document);
+                foreach ($request->file('attachment_files') as $key => $file) {
+                    $this->handleUploadFile($key, $file, $document);
                 }
             }
 
@@ -181,8 +181,8 @@ class DocumentController extends Controller
             $input['updated_by_id'] = auth()->id();
             if ($request->hasFile('attachment_files')) {
                 $model->attachmentFiles()->delete();
-                foreach ($request->file('attachment_files') as $file) {
-                    $this->handleUploadFile($file, $model);
+                foreach ($request->file('attachment_files') as $key => $file) {
+                    $this->handleUploadFile($key, $file, $model);
                 }
             }
             $model->fill($input);
@@ -218,7 +218,7 @@ class DocumentController extends Controller
         try {
             $input = $request->all();
             $input['created_by_id'] = auth()->id();
-            $input['user_type'] = auth()->user()->role_type;
+            $input['user_type'] = auth()->user()->role_type ?? 'agent';
             $input['document_id'] = $document->id;
             $documentAction = new DocumentAction();
             $documentAction->fill($input);
@@ -241,7 +241,7 @@ class DocumentController extends Controller
             $documentAction = new DocumentAction();
             $input['json_data_update'] = json_encode($input['data'], JSON_THROW_ON_ERROR);
             $input['created_by_id'] = auth()->id();
-            $input['user_type'] = auth()->user()->role_type;
+            $input['user_type'] = auth()->user()->role_type ?? 'agent';
             $input['document_id'] = $model->id;
             $input['action'] = DocumentAction::ACTION_EDIT_DOCUMENT;
             $documentAction->fill($input);
@@ -310,9 +310,9 @@ class DocumentController extends Controller
         return $branch;
     }
 
-    private function handleUploadFile($file, $document): void
+    private function handleUploadFile($key, $file, $document): void
     {
-        $fileName = $document->code . '.' . $file->getClientOriginalExtension();
+        $fileName = $document->code . '.' . '(' . $key + 1 . ')' . $file->getClientOriginalExtension();
         $filePath = $file->storePubliclyAs('files/document', $fileName);
         $data = asset('storage/' . $filePath);
         $attachment = new AttachmentFile();
