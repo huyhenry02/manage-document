@@ -34,6 +34,14 @@ class UserController extends Controller
         return view('user.detail');
 
     }
+    public function show_index_comment(): View|Factory|Application
+    {
+        $comments = Comment::orderBy('created_at', 'desc')->get();
+        return view('user.index-comment', [
+            'comments' => $comments
+        ]);
+    }
+
 
     public function show_update(User $model): View|Factory|Application
     {

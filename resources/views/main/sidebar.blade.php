@@ -28,7 +28,7 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <li class="nav-item active">
+                <li class="nav-item {{ request()->routeIs('document.*') || request()->routeIs('folder.*')  ? 'active' : '' }}">
                     <a
                         data-bs-toggle="collapse"
                         href="#dashboard"
@@ -41,31 +41,31 @@
                     </a>
                     <div class="collapse show" id="dashboard">
                         <ul class="nav nav-collapse show">
-                            <li>
+                            <li class="{{ request()->routeIs('document.index') ? 'active' : '' }}">
                                 <a href="{{ route('document.index') }}">
                                     <span class="sub-item">Danh sách tài liệu</span>
                                 </a>
                             </li>
                             @if( auth()->user()->role_type === User::ROLE_AGENT)
-                                <li>
+                                <li class="{{ request()->routeIs('document.showPrivateDocument') ? 'active' : '' }}">
                                     <a href="{{ route('document.showPrivateDocument') }}">
                                         <span class="sub-item">Tài liêu của tôi</span>
                                     </a>
                                 </li>
                             @endif
-                            <li>
+                            <li class="{{ request()->routeIs('folder.index') ? 'active' : '' }}">
                                 <a href="{{ route('folder.index', 1) }}">
                                     <span class="sub-item">Thư mục tài liệu</span>
                                 </a>
                             </li>
                             @if( auth()->user()->role_type === User::ROLE_AGENT)
-                                <li>
+                                <li class="{{ request()->routeIs('document.showListRequestForAgent') ? 'active' : '' }}">
                                     <a href="{{ route('document.showListRequestForAgent') }}">
                                         <span class="sub-item">Yêu cầu của bạn</span>
                                     </a>
                                 </li>
                             @else
-                                <li>
+                                <li class="{{ request()->routeIs('document.showListRequestForAdmin') ? 'active' : '' }}">
                                     <a href="{{route('document.showListRequestForAdmin')}}">
                                         <span class="sub-item">Yêu cầu chờ phê duyệt</span>
                                     </a>
@@ -75,7 +75,7 @@
                     </div>
                 </li>
                 @if(auth()->user()->role_type === User::ROLE_ADMIN)
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('user.*') ? 'active' : '' }}">
                         <a data-bs-toggle="collapse show" href="#maps">
                             <i class="fas fa-user-cog"></i>
                             <p>Quản lý người dùng</p>
@@ -83,9 +83,14 @@
                         </a>
                         <div class="collapse show" id="maps">
                             <ul class="nav nav-collapse">
-                                <li>
+                                <li class="{{ request()->routeIs('user.index') ? 'active' : '' }}">
                                     <a href="{{route('user.index')}}">
                                         <span class="sub-item">Danh sách người dùng</span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->routeIs('user.show_index_comment') ? 'active' : '' }}">
+                                    <a href="{{route('user.show_index_comment')}}">
+                                        <span class="sub-item">Quản lý bình luận</span>
                                     </a>
                                 </li>
                             </ul>

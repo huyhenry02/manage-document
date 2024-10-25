@@ -50,6 +50,7 @@ Route::group([
 ], static function () {
     Route::get('/', [UserController::class, 'show_index'])->name('user.index');
     Route::get('/create', [UserController::class, 'show_create'])->name('user.create');
+    Route::get('/comment', [UserController::class, 'show_index_comment'])->name('user.show_index_comment');
     Route::get('/update/{model}', [UserController::class, 'show_update'])->name('user.update');
 
     Route::post('/create', [UserController::class, 'createAgent'])->name('user.store');

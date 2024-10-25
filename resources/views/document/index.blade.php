@@ -54,7 +54,7 @@
                                             <td class="text-center">{{ $val->code ?? '' }}</td>
                                             <td class="text-center">{{ $val->title ?? '' }}</td>
                                             <td class="text-center">{{ $val->comments()->count() ?? '' }}</td>
-                                            <td class="text-center">{{ $val->created_at ?? '' }}</td>
+                                            <td class="text-center">{{ $val->created_at->format('H:i d/m/Y') ?? '' }}</td>
                                             <td class="text-center">{{ $val->createdBy?->name ?? '' }}</td>
                                             <td class="text-center">
                                                 <div class="dropdown action-dropdown">

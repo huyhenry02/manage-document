@@ -38,12 +38,14 @@
                         @case('document.index')
                         @case('folder.index')
                         @case('user.index')
+                        @case('user.show_index_comment')
                         @case('document.showListRequestForAgent')
                         @case('document.showListRequestForAdmin')
                         @case('document.showPrivateDocument')
                             Danh Sách
                             @break
                         @case('document.create')
+                        @case('user.create')
                             Thêm mới
                             @break
                         @case('document.detail')
@@ -87,6 +89,8 @@
                                     Quản lý thư mục
                                     @break
                                 @case('user.index')
+                                @case('user.show_index_comment')
+                                @case('user.create')
                                     Quản lý người dùng
                                     @break
 
@@ -130,6 +134,12 @@
                                     @break
                                 @case('user.index')
                                     Danh sách người dùng
+                                    @break
+                                @case('user.show_index_comment')
+                                    Danh sách bình luận
+                                    @break
+                                @case('user.create')
+                                    Thêm mới người dùng
                                     @break
                             @endswitch
                         </a>

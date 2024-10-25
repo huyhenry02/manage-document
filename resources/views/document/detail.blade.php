@@ -43,7 +43,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        {{ $model->created_at ?? '' }}
+                                        {{ $model->created_at->format('H:i d/m/Y') ?? '' }}
                                     </p>
                                 </td>
                             </tr>

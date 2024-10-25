@@ -45,7 +45,7 @@
                                 </td>
                                 <td style="padding: 5px !important;">
                                     <p class="text-muted">
-                                        {{ $document->created_at ?? '' }}
+                                        {{ $document->created_at->format('H:i d/m/Y') ?? '' }}
                                     </p>
                                 </td>
                             </tr>

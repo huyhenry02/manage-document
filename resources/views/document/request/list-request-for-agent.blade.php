@@ -50,7 +50,7 @@
                                                         <td class="text-center text-danger">Từ chối</td>
                                                         @break
                                                 @endswitch
-                                                <td class="text-center">{{ $request->created_at ?? '' }}</td>
+                                                <td class="text-center">{{ $request->created_at->format('H:i d/m/Y') ?? '' }}</td>
                                                 <td class="text-center text-primary">
                                                     @if( $request->action === DocumentAction::ACTION_PUBLIC_DOCUMENT )
                                                         <a class="dropdown-item"
