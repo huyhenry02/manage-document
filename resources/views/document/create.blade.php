@@ -57,8 +57,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="file">File đính kèm</label>
-                                    <input type="file" class="form-control" id="file" name="attachment_file"/>
+                                    <label for="files">Files đính kèm</label>
+                                    <input type="file" class="form-control" id="files" name="attachment_files[]" multiple/>
+                                    <ul id="fileList" class="list-group mt-2"></ul>
                                 </div>
                             </div>
                         </div>
@@ -80,6 +81,14 @@
                 allowClear: true,
                 width: '100%'
             });
+            $('#files').on('change', function () {
+                var fileList = $('#fileList');
+                fileList.empty();
+                for (var i = 0; i < this.files.length; i++) {
+                    fileList.append('<li class="list-group-item">' + this.files[i].name + '</li>');
+                }
+            });
+
         });
     </script>
     <style>
@@ -99,6 +108,18 @@
         }
 
         .form-select option.level-3 {
+            padding-left: 70px;
+            font-style: italic;
+            color: #777;
+        }
+
+        .form-select option.level-4 {
+            padding-left: 70px;
+            font-style: italic;
+            color: #777;
+        }
+
+        .form-select option.level-5 {
             padding-left: 70px;
             font-style: italic;
             color: #777;

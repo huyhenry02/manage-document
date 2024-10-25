@@ -155,9 +155,13 @@ class DocumentController extends Controller
             $document->save();
             $document->code = 'DOC' . $document->folder_id . '-' . $document->id;
             $document->save();
-            if ($request->hasFile('attachment_file')) {
-                $this->handleUploadFile($request, $document);
+
+            if ($request->hasFile('attachment_files')) {
+                foreach ($request->file('attachment_files') as $file) {
+                    $this->handleUploadFile($file, $document);
+                }
             }
+
             DB::commit();
             return redirect()->route('document.index');
 
@@ -175,9 +179,11 @@ class DocumentController extends Controller
         try {
             $input = $request->all();
             $input['updated_by_id'] = auth()->id();
-            if ($request->hasFile('attachment_file')) {
+            if ($request->hasFile('attachment_files')) {
                 $model->attachmentFiles()->delete();
-                $this->handleUploadFile($request, $model);
+                foreach ($request->file('attachment_files') as $file) {
+                    $this->handleUploadFile($file, $model);
+                }
             }
             $model->fill($input);
             $model->save();
@@ -304,9 +310,8 @@ class DocumentController extends Controller
         return $branch;
     }
 
-    private function handleUploadFile($request, $document): void
+    private function handleUploadFile($file, $document): void
     {
-        $file = $request->file('attachment_file');
         $fileName = $document->code . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storePubliclyAs('files/document', $fileName);
         $data = asset('storage/' . $filePath);
