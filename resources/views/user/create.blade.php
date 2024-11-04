@@ -27,12 +27,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">Tên người dùng</label>
                                     <input
-                                        type="email"
+                                        type="text"
                                         class="form-control"
                                         id="email"
-                                        name="email"
+                                        name="user_name"
                                     />
                                 </div>
                             </div>
