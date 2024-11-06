@@ -63,7 +63,7 @@ class UserController extends Controller
             $agent->fill($input);
             $agent->save();
             DB::commit();
-            return redirect()->route('user.index')->with('success', 'Agent created successfully');
+            return redirect()->back()->with('success', 'Agent được tạo thành công');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());

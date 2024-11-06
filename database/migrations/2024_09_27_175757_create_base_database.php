@@ -29,7 +29,7 @@ return new class extends Migration
             $table->enum('action', ['public_document', 'edit_document']);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('reason')->nullable();
-            $table->json('json_data_update');
+            $table->json('json_data_update')->nullable();
             $table->unsignedBigInteger('created_by_id');
             $table->unsignedBigInteger('confirmed_by_id')->nullable();
             $table->enum('user_type', ['admin', 'agent']);

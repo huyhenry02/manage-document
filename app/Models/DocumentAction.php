@@ -20,6 +20,7 @@ class DocumentAction extends Model
     protected $fillable = [
         'document_id',
         'action',
+        'status',
         'reason',
         'json_data_update',
         'created_by_id',

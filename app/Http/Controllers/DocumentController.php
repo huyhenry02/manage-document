@@ -70,10 +70,14 @@ class DocumentController extends Controller
             ->with('user')
             ->orderBy('created_at', 'desc')
             ->get();
+        $documentActions = DocumentAction::where('document_id', $model->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('document.detail',
             [
                 'model' => $model,
-                'comments' => $comments
+                'comments' => $comments,
+                'documentActions' => $documentActions
             ]);
     }
 

@@ -1,3 +1,4 @@
+@php use App\Models\DocumentAction; @endphp
 @extends('main.index')
 @section('content')
     <div class="page-header">
@@ -15,70 +16,125 @@
                 </div>
                 <div class="card-body">
                     <div class="main-information">
-                        <table class="table table-main-content">
-                            <tbody>
-                            <tr>
-                                <td style="padding: 5px !important;">
-                                    <p>Mã tài liệu</p>
-                                </td>
-                                <td style="padding: 5px !important;">
-                                    <p class="text-muted">
-                                        {{ $model->code ?? '' }}
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px !important;">
-                                    <p>Tiêu đề</p>
-                                </td>
-                                <td style="padding: 5px !important;">
-                                    <p class="text-muted">
-                                        {{ $model->title ?? '' }}
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px !important;">
-                                    <p>Thời gian đăng tải</p>
-                                </td>
-                                <td style="padding: 5px !important;">
-                                    <p class="text-muted">
-                                        {{ $model->created_at->format('H:i d/m/Y') ?? '' }}
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px !important;">
-                                    <p>Thời gian có hiệu lực từ</p>
-                                </td>
-                                <td style="padding: 5px !important;">
-                                    <p class="text-muted">
-                                        {{ $model->start_time ?? '' }}
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px !important;">
-                                    <p>Thời gian có hiệu lực đến</p>
-                                </td>
-                                <td style="padding: 5px !important;">
-                                    <p class="text-muted">
-                                        {{ $model->end_time ?? '' }}
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px !important;">
-                                    <p>Người đăng</p>
-                                </td>
-                                <td style="padding: 5px !important;">
-                                    <p class="text-muted">
-                                        {{ $model->createdBy->name ?? '' }}
-                                    </p>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <table class="table table-main-content">
+                                    <tbody>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Mã tài liệu</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->code ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Tiêu đề</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->title ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Thời gian đăng tải</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->created_at->format('H:i d/m/Y') ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Thời gian có hiệu lực từ</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->start_time ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Thời gian có hiệu lực đến</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->end_time ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Người đăng</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->createdBy->name ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table table-main-content">
+                                    <tbody>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Thư mục</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->folder->name ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr class="file-attachments">
+                                        <td style="padding: 5px !important;">
+                                            <p>Tệp đính kèm</p>
+                                        </td>
+                                        <td style="padding: 5px !important; max-width: 300px">
+                                            @if( !empty($model->attachmentFiles) && count($model->attachmentFiles) > 0 )
+                                                <table style="width: 100%">
+                                                    <tbody>
+                                                    @foreach( $model->attachmentFiles as $attachment )
+                                                        <tr>
+                                                            <td>
+                                                                <a href="{{ route('pdf.preview', $attachment->file_name) }}"
+                                                                   target="_blank">
+                                                                    <i class="fas fa-file-pdf"></i>
+                                                                    <span>{{ $attachment->file_name }}</span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            @endif
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px !important;">
+                                            <p>Ghi chú</p>
+                                        </td>
+                                        <td style="padding: 5px !important;">
+                                            <p class="text-muted">
+                                                {{ $model->note ?? '' }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                     </div>
                     <ul class="nav nav-tabs nav-line nav-color-secondary" id="line-tab" role="tablist">
                         <li class="nav-item">
@@ -113,64 +169,10 @@
                              aria-labelledby="line-home-tab">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-typo" style="width: 100%">
-                                        <tbody>
-                                        <tr>
-                                            <td style="padding: 5px !important; vertical-align: middle;">
-                                                <p>Thư mục</p>
-                                            </td>
-                                            <td style="padding: 5px !important; vertical-align: middle; max-width: 300px">
-                                                <p class="text-muted">
-                                                    {{ $model->folder->name ?? '' }}
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr class="file-attachments">
-                                            <td style="padding: 5px !important;">
-                                                <p>Tệp đính kèm</p>
-                                            </td>
-                                            <td style="padding: 5px !important; max-width: 300px">
-                                                @if( !empty($model->attachmentFiles) && count($model->attachmentFiles) > 0 )
-                                                    <table style="width: 100%">
-                                                        <tbody>
-                                                        @foreach( $model->attachmentFiles as $attachment )
-                                                            <tr>
-                                                                <td>
-                                                                    <a href="{{ route('pdf.preview', $attachment->file_name) }}" target="_blank">
-                                                                        <i class="fas fa-file-pdf"></i>
-                                                                        <span>{{ $attachment->file_name }}</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                @endif
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 5px !important;">
-                                                <p>Nội dung</p>
-                                            </td>
-                                            <td style="padding: 5px !important; max-width: 300px">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                          name="content" disabled>{{ $model->content ?? '' }}</textarea>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 5px !important;">
-                                                <p>Ghi chú</p>
-                                            </td>
-                                            <td style="padding: 5px !important; max-width: 300px">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                          name="content" disabled>{{ $model->note ?? '' }}</textarea>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                    <p>{!! nl2br(e($model->content ?? '')) !!}</p>
                                 </div>
                             </div>
+
                         </div>
                         <div class="tab-pane fade" id="line-contact" role="tabpanel"
                              aria-labelledby="line-contact-tab">
@@ -181,7 +183,7 @@
                                         <table class="table align-items-center mb-0">
                                             <thead class="thead-light">
                                             <tr>
-                                                <th scope="col">Người thao tác</th>
+                                                <th scope="col">Người yêu cầu</th>
                                                 <th scope="col" class="text-center">Hành động</th>
                                                 <th scope="col" class="text-center">Trạng thái</th>
                                                 <th scope="col" class="text-center">Thời Gian</th>
@@ -189,54 +191,61 @@
 
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button
-                                                        class="btn btn-icon btn-round btn-danger btn-sm me-2"
-                                                    >
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
-                                                    Admin
-                                                </th>
-                                                <td class="text-center">Từ chối</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                                <td class="text-center">21:05:34 21-03-2024</td>
+                                            @foreach($documentActions as $action)
+                                                <tr>
+                                                    <th scope="row">
+                                                        @switch( $action->status )
+                                                            @case( DocumentAction::STATUS_APPROVED )
+                                                                <button
+                                                                    class="btn btn-icon btn-round btn-success btn-sm me-2"
+                                                                >
+                                                                    <i class="fas fa-check"></i>
+                                                                </button>
+                                                                @break
+                                                            @case( DocumentAction::STATUS_PENDING )
+                                                                <button
+                                                                    class="btn btn-icon btn-round btn-warning btn-sm me-2"
+                                                                >
+                                                                    <i class="fas fa-spinner"></i>
+                                                                </button>
+                                                                @break
+                                                            @case( DocumentAction::STATUS_REJECTED )
+                                                                <button
+                                                                    class="btn btn-icon btn-round btn-success btn-sm me-2"
+                                                                >
+                                                                    <i class="fas fa-check"></i>
+                                                                </button>
+                                                                @break
+                                                        @endswitch
+                                                            {{ $action->createdBy->name ?? '' }}
 
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button
-                                                        class="btn btn-icon btn-round btn-success btn-sm me-2"
-                                                    >
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Admin
-                                                </th>
-                                                <td class="text-center">Phê Duyệt</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                                <td class="text-center">21:05:34 21-03-2024</td>
+                                                    </th>
+                                                    <td class="text-center">
+                                                        @if( $action->action === DocumentAction::ACTION_PUBLIC_DOCUMENT )
+                                                            Công khai tài liệu
+                                                        @else
+                                                            Yêu cầu chỉnh sửa
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @switch( $action->status )
+                                                            @case( DocumentAction::STATUS_APPROVED )
+                                                                <span class="badge badge-success">Đã xác nhận</span>
+                                                                @break
+                                                            @case( DocumentAction::STATUS_PENDING )
+                                                                <span class="badge badge-primary">Chờ duyệt</span>
+                                                                @break
+                                                            @case( DocumentAction::STATUS_REJECTED )
+                                                                <span class="badge badge-danger">Từ chối</span>
+                                                                @break
+                                                        @endswitch
 
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button
-                                                        class="btn btn-icon btn-round btn-info btn-sm me-2"
-                                                    >
-                                                        <i class="fas fa-share"></i>
-                                                    </button>
-                                                    Admin
-                                                </th>
-                                                <td class="text-center">Chờ duyệt</td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                                <td class="text-center">21:05:34 21-03-2024</td>
-
-                                            </tr>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $action->created_at->format('H:i d/m/Y') }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -422,6 +431,10 @@
         #publicDocumentModal .form-control {
             font-size: 1rem;
             padding: 10px;
+        }
+
+        .table-main-content {
+            width: 100%;
         }
 
     </style>
