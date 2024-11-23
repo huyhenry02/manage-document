@@ -64,6 +64,17 @@ class DocumentController extends Controller
         ]);
     }
 
+    public function show_update_request_update(DocumentAction $documentAction): View|Factory|Application
+    {
+        $document = $documentAction->document;
+        $dataUpdate = json_decode($documentAction->json_data_update, true, 512, JSON_THROW_ON_ERROR);
+        return view('document.request.update-request-update', [
+            'documentAction' => $documentAction,
+            'document' => $document,
+            'dataUpdate' => $dataUpdate
+        ]);
+    }
+
     public function show_detail(Document $model): View|Factory|Application
     {
         $comments = Comment::where('document_id', $model->id)
@@ -132,9 +143,6 @@ class DocumentController extends Controller
             ]);
     }
 
-    /**
-     * @throws JsonException
-     */
     public function showRequestUpdateDetail(DocumentAction $documentAction): View|Factory|Application
     {
         $document = $documentAction->document;
@@ -350,6 +358,24 @@ class DocumentController extends Controller
             $documentAction->save();
             DB::commit();
             return redirect()->back();
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function updateRequestUpdate(DocumentAction $documentAction, Request $request): JsonResponse|RedirectResponse
+    {
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $input['json_data_update'] = json_encode($input['data'], JSON_THROW_ON_ERROR);
+            $documentAction->fill($input);
+            $documentAction->save();
+            DB::commit();
+            return redirect()->route('document.showListRequestForAgent');
         } catch (Exception $e) {
             DB::rollBack();
             return response()->json([

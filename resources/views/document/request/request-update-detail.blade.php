@@ -21,6 +21,9 @@
                        </div>
                     @else
                         <div style="margin-left: auto">
+                            <a class="btn btn-secondary" href="{{ route('document.show_update_request_update', $documentAction->id) }}">
+                                Sửa yêu cầu
+                            </a>
                             <button class="btn btn-primary" id="deleted-request-btn">
                                 Hủy yêu cầu
                             </button>

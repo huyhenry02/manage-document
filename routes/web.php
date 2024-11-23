@@ -33,6 +33,7 @@ Route::group([
     Route::get('/creat', [DocumentController::class, 'show_create'])->name('document.create');
     Route::get('/update/{model}', [DocumentController::class, 'show_update'])->name('document.update');
     Route::get('/request-update/{model}', [DocumentController::class, 'show_request_update'])->name('document.show_request_update');
+    Route::get('/update-request-update/{documentAction}', [DocumentController::class, 'show_update_request_update'])->name('document.show_update_request_update');
     Route::get('/detail/{model}', [DocumentController::class, 'show_detail'])->name('document.detail');
     Route::get('/detail-request-public/{documentAction}', [DocumentController::class, 'showRequestPublicDetail'])->name('document.showRequestPublicDetail');
     Route::get('/detail-request-update/{documentAction}', [DocumentController::class, 'showRequestUpdateDetail'])->name('document.showRequestUpdateDetail');
@@ -46,6 +47,7 @@ Route::group([
     Route::post('/request-update-document/{model}', [DocumentController::class, 'requestUpdateForAgent'])->name('document.requestUpdateForAgent');
     Route::post('/request-delete-document/{model}', [DocumentController::class, 'requestDeleteForAgent'])->name('document.requestDeleteForAgent');
     Route::post('/confirm-request/{documentAction}', [DocumentController::class, 'confirmRequest'])->name('document.confirmRequest');
+    Route::post('/update-request-update/{documentAction}', [DocumentController::class, 'updateRequestUpdate'])->name('document.updateRequestUpdate');
 });
 
 Route::group([

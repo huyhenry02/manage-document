@@ -50,6 +50,7 @@
                             @break
                         @case('document.detail')
                         @case('document.showRequestPublicDetail')
+                        @case('document.show_update_request_update')
                         @case('document.showRequestDeleteDetail')
                         @case('document.showRequestUpdateDetail')
                             Chi tiết
@@ -82,6 +83,7 @@
                                 @case('document.detail')
                                 @case('document.showRequestPublicDetail')
                                 @case('document.showRequestUpdateDetail')
+                                @case('document.show_update_request_update')
                                 @case('document.showRequestDeleteDetail')
                                 @case('document.update')
                                 @case('document.show_request_update')
@@ -130,6 +132,7 @@
                                     @break
                                 @case('document.update')
                                 @case('document.show_request_update')
+                                @case('document.show_update_request_update')
                                     Sửa tài liệu
                                     @break
                                 @case('folder.index')
