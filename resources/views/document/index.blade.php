@@ -21,6 +21,12 @@
         </a>
     </div>
     <div class="row">
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -83,6 +89,9 @@
                                                                href="{{ route('document.show_request_update', $val->id) }}">
                                                                 <i class="fa fa-edit"></i> Yêu cầu chỉnh sửa
                                                             </a>
+                                                            <a class="dropdown-item request-remove" href="#" data-id="{{ $val->id }}">
+                                                                <i class="fa fa-trash"></i> Yêu cầu gỡ tài liệu
+                                                            </a>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -97,6 +106,7 @@
                 </div>
             </div>
         </div>
+        @include('modals.request-delete')
         <style>
             .input-search-document {
                 position: relative;
@@ -160,5 +170,70 @@
 
 
         </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const requestRemoveLinks = document.querySelectorAll('.request-remove');
+
+                requestRemoveLinks.forEach(link => {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        const documentId = this.getAttribute('data-id');
+                        const modal = new bootstrap.Modal(document.getElementById('confirmRemoveModal'));
+
+                        const form = document.getElementById('removeDocumentForm');
+                        form.action = `/document/request-delete-document/${documentId}`;
+
+                        modal.show();
+                    });
+                });
+            });
+            document.querySelector('.search-input').addEventListener('keyup', function () {
+                const query = this.value;
+
+                if (query.length > 0) {
+                    fetch(`{{ route('documents.search') }}?query=${query}`, {
+                        method: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                        },
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            const tbody = document.querySelector('table tbody');
+                            tbody.innerHTML = '';
+
+                            data.documents.forEach((document, index) => {
+                                tbody.innerHTML += `
+                            <tr>
+                                <td class="text-center">${index + 1}</td>
+                                <td class="text-center">${document.code || ''}</td>
+                                <td class="text-center">${document.title || ''}</td>
+                                <td class="text-center">${document.comments_count || 0}</td>
+                                <td class="text-center">${new Date(document.created_at).toLocaleString()}</td>
+                                <td class="text-center">${document.created_by?.name || ''}</td>
+                                <td class="text-center">
+                                    <div class="dropdown action-dropdown">
+                                        <button class="btn btn-link dropdown-toggle" type="button"
+                                                id="actionDropdown" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                            <a class="dropdown-item" href="/documents/${document.id}">
+                                                <i class="fas fa-eye"></i> Xem
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                            });
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+            });
+        </script>
+
 @endsection
 

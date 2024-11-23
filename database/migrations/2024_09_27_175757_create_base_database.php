@@ -26,7 +26,7 @@ return new class extends Migration
         Schema::create('document_actions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_id');
-            $table->enum('action', ['public_document', 'edit_document']);
+            $table->enum('action', ['public_document', 'edit_document', 'delete_document']);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('reason')->nullable();
             $table->json('json_data_update')->nullable();

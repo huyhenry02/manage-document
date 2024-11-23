@@ -95,6 +95,53 @@
             </div>
         </div>
     </div>
+    <script>
+        document.querySelector('.search-input').addEventListener('keyup', function () {
+            const query = this.value;
+
+            if (query.length > 0) {
+                fetch(`{{ route('documents.searchPrivate') }}?query=${query}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const tbody = document.querySelector('table tbody');
+                        tbody.innerHTML = '';
+
+                        data.documents.forEach((document, index) => {
+                            tbody.innerHTML += `
+                            <tr>
+                                <td class="text-center">${index + 1}</td>
+                                <td class="text-center">${document.code || ''}</td>
+                                <td class="text-center">${document.title || ''}</td>
+                                <td class="text-center">${document.comments_count || 0}</td>
+                                <td class="text-center">${new Date(document.created_at).toLocaleString()}</td>
+                                <td class="text-center">${document.created_by?.name || ''}</td>
+                                <td class="text-center">
+                                    <div class="dropdown action-dropdown">
+                                        <button class="btn btn-link dropdown-toggle" type="button"
+                                                id="actionDropdown" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                            <a class="dropdown-item" href="/documents/${document.id}">
+                                                <i class="fas fa-eye"></i> Xem
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
     <style>
         .input-search-document {
             position: relative;

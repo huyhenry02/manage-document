@@ -13,6 +13,7 @@ class DocumentAction extends Model
     protected $table = 'document_actions';
     public const ACTION_PUBLIC_DOCUMENT = 'public_document';
     public const ACTION_EDIT_DOCUMENT = 'edit_document';
+    public const ACTION_DELETE_DOCUMENT = 'delete_document';
     public const STATUS_APPROVED = 'approved';
     public const STATUS_REJECTED = 'rejected';
     public const STATUS_PENDING = 'pending';

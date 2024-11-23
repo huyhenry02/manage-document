@@ -37,6 +37,9 @@
                                                 @case( DocumentAction::ACTION_EDIT_DOCUMENT )
                                                     <td class="text-center">Yêu cầu chỉnh sửa tài liệu</td>
                                                     @break
+                                                @case( DocumentAction::ACTION_DELETE_DOCUMENT )
+                                                    <td class="text-center">Yêu cầu gỡ tài liệu</td>
+                                                    @break
                                             @endswitch
                                             <td class="text-center">{{ $request->reason ?? '' }}</td>
                                             @switch( $request->status )
@@ -53,17 +56,26 @@
                                             <td class="text-center">{{ $request->created_at->format('H:i d/m/Y') ?? '' }}</td>
                                             <td class="text-center">{{ $request->createdBy?->name ?? '' }}</td>
                                             <td class="text-center text-primary">
-                                                @if( $request->action === DocumentAction::ACTION_PUBLIC_DOCUMENT )
-                                                    <a class="dropdown-item"
-                                                       href="{{ route('document.showRequestPublicDetail', $request->id) }}">
-                                                        <i class="fas fa-eye"></i> Xem
-                                                    </a>
-                                                @else
-                                                    <a class="dropdown-item"
-                                                       href="{{ route('document.showRequestUpdateDetail', $request->id) }}">
-                                                        <i class="fas fa-eye"></i> Xem
-                                                    </a>
-                                                @endif
+                                                @switch( $request->action )
+                                                    @case( DocumentAction::ACTION_PUBLIC_DOCUMENT)
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('document.showRequestPublicDetail', $request->id) }}">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        @break
+                                                    @case( DocumentAction::ACTION_EDIT_DOCUMENT)
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('document.showRequestUpdateDetail', $request->id) }}">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        @break
+                                                    @case( DocumentAction::ACTION_DELETE_DOCUMENT)
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('document.showRequestDeleteDetail', $request->id) }}">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                        @break
+                                                @endswitch
                                             </td>
                                         </tr>
                                     @endforeach

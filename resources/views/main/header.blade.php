@@ -50,6 +50,7 @@
                             @break
                         @case('document.detail')
                         @case('document.showRequestPublicDetail')
+                        @case('document.showRequestDeleteDetail')
                         @case('document.showRequestUpdateDetail')
                             Chi tiết
                             @break
@@ -81,6 +82,7 @@
                                 @case('document.detail')
                                 @case('document.showRequestPublicDetail')
                                 @case('document.showRequestUpdateDetail')
+                                @case('document.showRequestDeleteDetail')
                                 @case('document.update')
                                 @case('document.show_request_update')
                                     Quản lý tài liệu
@@ -117,6 +119,7 @@
                                     @break
                                 @case('document.showRequestUpdateDetail')
                                 @case('document.showRequestPublicDetail')
+                                @case('document.showRequestDeleteDetail')
                                     Thông tin yêu cầu
                                     @break
                                 @case('document.detail')

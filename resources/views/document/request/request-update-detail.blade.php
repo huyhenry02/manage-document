@@ -9,10 +9,22 @@
                 <div class="card-header d-flex">
                     <h4 class="card-title text-center">Thông tin chính</h4>
                     @if( $documentAction->status === DocumentAction::STATUS_PENDING && auth()->user()->role_type === User::ROLE_ADMIN )
-                        <button class="btn btn-secondary" id="approved-document-btn">
-                            <i class="fa fa-check"></i>
-                            Phê duyệt
-                        </button>
+                       <div style="margin-left: auto">
+                           <button class="btn btn-secondary" id="approved-document-btn">
+                               <i class="fa fa-check"></i>
+                               Phê duyệt
+                           </button>
+                           <button class="btn btn-danger" id="rejected-document-btn">
+                               <i class="fa fa-trash"></i>
+                               Từ chối
+                           </button>
+                       </div>
+                    @else
+                        <div style="margin-left: auto">
+                            <button class="btn btn-primary" id="deleted-request-btn">
+                                Hủy yêu cầu
+                            </button>
+                        </div>
                     @endif
                 </div>
                 <div class="card-body">
@@ -262,6 +274,33 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deletedRequestModal" tabindex="-1" role="dialog"
+         aria-labelledby="deletedRequestModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletedRequestModalLabel">Xác nhận hủy yêu cầu</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('document.confirmRequest', $documentAction->id) }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="action" value="approved">
+                        <span>
+                            Bạn có chắc chắn muốn hủy yêu cầu này không?
+                        </span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -271,7 +310,9 @@
             $('#rejected-document-btn').on('click', function () {
                 $('#rejectedDocumentModal').modal('show');
             });
-
+            $('#deleted-request-btn').on('click', function () {
+                $('#deletedRequestModal').modal('show');
+            });
             $('#submit-comment').on('click', function () {
                 const documentId = {{ $document->id }};
                 const content = $('#comment-content').val();

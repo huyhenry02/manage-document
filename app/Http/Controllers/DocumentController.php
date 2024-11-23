@@ -81,10 +81,51 @@ class DocumentController extends Controller
             ]);
     }
 
+    public function search(Request $request): JsonResponse
+    {
+        $query = $request->input('query');
+
+        $documents = Document::query()
+            ->where('title', 'like', "%{$query}%")
+            ->orWhereHas('folder', function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%");
+            })
+            ->with('createdBy')
+            ->get();
+
+        return response()->json(['documents' => $documents]);
+    }
+
+    public function searchPrivate(Request $request): JsonResponse
+    {
+        $query = $request->input('query');
+
+        $documents = Document::query()
+            ->where('title', 'like', "%{$query}%")
+            ->where('created_by_id', auth()->id())
+            ->orWhereHas('folder', function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%");
+            })
+            ->with('createdBy')
+            ->get();
+
+        return response()->json(['documents' => $documents]);
+    }
+
     public function showRequestPublicDetail(DocumentAction $documentAction): View|Factory|Application
     {
         $document = $documentAction->document;
         return view('document.request.request-public-detail',
+            [
+                'documentAction' => $documentAction,
+                'document' => $document
+            ]);
+    }
+
+    public function showRequestDeleteDetail(DocumentAction $documentAction): View|Factory|Application
+    {
+        $document = $documentAction->document;
+        return view('document.request.request-delete-detail',
             [
                 'documentAction' => $documentAction,
                 'document' => $document
@@ -252,6 +293,28 @@ class DocumentController extends Controller
             $documentAction->save();
             DB::commit();
             return redirect()->route('document.index');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function requestDeleteForAgent(Document $model, Request $request): JsonResponse|RedirectResponse
+    {
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $documentAction = new DocumentAction();
+            $input['created_by_id'] = auth()->id();
+            $input['user_type'] = auth()->user()->role_type ?? 'agent';
+            $input['document_id'] = $model->id;
+            $input['action'] = DocumentAction::ACTION_DELETE_DOCUMENT;
+            $documentAction->fill($input);
+            $documentAction->save();
+            DB::commit();
+            return redirect()->back()->with('success', 'Yêu cầu gỡ tài liệu đã được gửi thành công.');
         } catch (Exception $e) {
             DB::rollBack();
             return response()->json([

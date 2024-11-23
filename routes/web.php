@@ -23,6 +23,8 @@ Route::group([
     'middleware' => 'auth'
 ], static function () {
     Route::get('/', [DocumentController::class, 'show_index'])->name('document.index');
+    Route::get('/search', [DocumentController::class, 'search'])->name('documents.search');
+    Route::get('/search-private', [DocumentController::class, 'searchPrivate'])->name('documents.searchPrivate');
     Route::get('/show-private-document', [DocumentController::class, 'showPrivateDocument'])->name('document.showPrivateDocument');
     Route::get('/show-list-request-for-agent', [DocumentController::class, 'showListRequestForAgent'])->name('document.showListRequestForAgent');
     Route::get('/show-list-request-for-admin', [DocumentController::class, 'showListRequestForAdmin'])->name('document.showListRequestForAdmin');
@@ -34,6 +36,7 @@ Route::group([
     Route::get('/detail/{model}', [DocumentController::class, 'show_detail'])->name('document.detail');
     Route::get('/detail-request-public/{documentAction}', [DocumentController::class, 'showRequestPublicDetail'])->name('document.showRequestPublicDetail');
     Route::get('/detail-request-update/{documentAction}', [DocumentController::class, 'showRequestUpdateDetail'])->name('document.showRequestUpdateDetail');
+    Route::get('/detail-delete-update/{documentAction}', [DocumentController::class, 'showRequestDeleteDetail'])->name('document.showRequestDeleteDetail');
     Route::get('/delete-document/{document}', [DocumentController::class, 'deleteDocument'])->name('document.deleteDocument');
 
 
@@ -41,6 +44,7 @@ Route::group([
     Route::post('/action-document/{document}', [DocumentController::class, 'actionDocument'])->name('document.actionDocument');
     Route::post('/update-document/{model}', [DocumentController::class, 'update'])->name('document.updateDocument');
     Route::post('/request-update-document/{model}', [DocumentController::class, 'requestUpdateForAgent'])->name('document.requestUpdateForAgent');
+    Route::post('/request-delete-document/{model}', [DocumentController::class, 'requestDeleteForAgent'])->name('document.requestDeleteForAgent');
     Route::post('/confirm-request/{documentAction}', [DocumentController::class, 'confirmRequest'])->name('document.confirmRequest');
 });
 
