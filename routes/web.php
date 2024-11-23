@@ -48,6 +48,7 @@ Route::group([
     Route::post('/request-delete-document/{model}', [DocumentController::class, 'requestDeleteForAgent'])->name('document.requestDeleteForAgent');
     Route::post('/confirm-request/{documentAction}', [DocumentController::class, 'confirmRequest'])->name('document.confirmRequest');
     Route::post('/update-request-update/{documentAction}', [DocumentController::class, 'updateRequestUpdate'])->name('document.updateRequestUpdate');
+    Route::get('/delete-request/{documentAction}', [DocumentController::class, 'deleteRequest'])->name('document.deleteRequest');
 });
 
 Route::group([

@@ -351,13 +351,20 @@ class DocumentController extends Controller
                         }
                         $document->save();
                         break;
+                    case DocumentAction::ACTION_DELETE_DOCUMENT:
+                        $document = Document::find($documentAction->document_id);
+                        $document->attachmentFiles()->delete();
+                        $document->comments()->delete();
+                        $document->documentActions()->delete();
+                        $document->delete();
+                        break;
                 }
             }
             $documentAction->status = $input['action'];
             $documentAction->confirmed_by_id = auth()->id();
             $documentAction->save();
             DB::commit();
-            return redirect()->back();
+            return redirect()->route('document.index');
         } catch (Exception $e) {
             DB::rollBack();
             return response()->json([
@@ -378,6 +385,17 @@ class DocumentController extends Controller
             return redirect()->route('document.showListRequestForAgent');
         } catch (Exception $e) {
             DB::rollBack();
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function deleteRequest(DocumentAction $documentAction): JsonResponse|RedirectResponse
+    {
+        try {
+            $documentAction->delete();
+            return redirect()->route('document.showListRequestForAgent');
+        } catch (Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
             ], 500);

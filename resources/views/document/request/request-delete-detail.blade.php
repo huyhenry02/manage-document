@@ -21,9 +21,11 @@
                         </div>
                         @else
                         <div style="margin-left: auto">
-                            <button class="btn btn-primary" id="deleted-request-btn">
-                                Hủy yêu cầu
-                            </button>
+                            <div style="margin-left: auto">
+                                <a type="button" class="btn btn-danger" href="{{ route('document.deleteRequest', $documentAction->id) }}">
+                                    Hủy yêu cầu
+                                </a>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -276,9 +278,6 @@
             </div>
         </div>
     </div>
-
-    @include('modals.delete-request')
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {

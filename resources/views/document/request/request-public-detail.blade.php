@@ -19,9 +19,9 @@
                         </div>
                     @else
                         <div style="margin-left: auto">
-                            <button class="btn btn-primary" id="deleted-request-btn">
+                            <a type="button" class="btn btn-danger" href="{{ route('document.deleteRequest', $documentAction->id) }}">
                                 Hủy yêu cầu
-                            </button>
+                            </a>
                         </div>
                     @endif
                 </div>
@@ -253,6 +253,17 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteRequestModal = document.getElementById('deletedRequestModal');
+            const deleteRequestForm = document.getElementById('deleteRequestForm');
+
+            deleteRequestModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget; // Nút kích hoạt modal
+                const documentActionId = button.getAttribute('data-id'); // Lấy ID từ data-attribute
+
+                deleteRequestForm.action = `/delete-request/${documentActionId}`;
+            });
+        });
         $(document).ready(function () {
             $('#approved-document-btn').on('click', function () {
                 $('#approvedDocumentModal').modal('show');
