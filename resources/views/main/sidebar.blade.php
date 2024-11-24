@@ -53,11 +53,13 @@
                                     </a>
                                 </li>
                             @endif
-                            <li class="{{ request()->routeIs('folder.index') ? 'active' : '' }}">
-                                <a href="{{ route('folder.index', 1) }}">
-                                    <span class="sub-item">Thư mục tài liệu</span>
-                                </a>
-                            </li>
+                            @if( auth()->user()->role_type === User::ROLE_ADMIN)
+                                <li class="{{ request()->routeIs('folder.index') ? 'active' : '' }}">
+                                    <a href="{{ route('folder.index', 1) }}">
+                                        <span class="sub-item">Thư mục tài liệu</span>
+                                    </a>
+                                </li>
+                            @endif
                             @if( auth()->user()->role_type === User::ROLE_AGENT)
                                 <li class="{{ request()->routeIs('document.showListRequestForAgent') ? 'active' : '' }}">
                                     <a href="{{ route('document.showListRequestForAgent') }}">
