@@ -22,9 +22,10 @@
                         @else
                         <div style="margin-left: auto">
                             <div style="margin-left: auto">
-                                <a type="button" class="btn btn-danger" href="{{ route('document.deleteRequest', $documentAction->id) }}">
+                                <button class="btn btn-danger" id="deleted-request-btn">
+                                    <i class="fa fa-trash"></i>
                                     Hủy yêu cầu
-                                </a>
+                                </button>
                             </div>
                         </div>
                     @endif
@@ -278,6 +279,31 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deletedRequestModal" tabindex="-1" role="dialog"
+         aria-labelledby="deletedRequestModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletedRequestModalLabel">Xác nhận hủy yêu cầu</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="action" value="approved">
+                        <span>
+                            Bạn có chắc chắn muốn hủy yêu cầu này không?
+                        </span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <a type="submit" class="btn btn-primary" href="{{ route('document.deleteRequest', $documentAction->id) }}">Xác nhận</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {

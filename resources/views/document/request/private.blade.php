@@ -75,10 +75,10 @@
                                                            href="{{ route('document.detail', $document->id) }}">
                                                             <i class="fas fa-eye"></i> Xem
                                                         </a>
-                                                        <a class="dropdown-item" href="#">
+                                                        <a class="dropdown-item" href="{{ route('document.update', $document->id) }}">
                                                             <i class="fa fa-edit"></i> Sửa
                                                         </a>
-                                                        <a class="dropdown-item text-danger" href="#">
+                                                        <a class="dropdown-item text-danger" href="{{ route('document.deleteDocument', $document->id) }}">
                                                             <i class="fa fa-times"></i> Xóa
                                                         </a>
                                                     </div>
